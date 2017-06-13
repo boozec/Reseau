@@ -1,0 +1,49 @@
+//texts
+$fontFamily:	Helvetica, sans-serif
+$fontColor:		#333
+$fontSize:		12pt
+
+//headers
+$hFontFamily:	'Lato', sans-serif
+$hFontColor:	#333
+$hFontSize:		30pt
+
+//info
+$bgcolor:		darken(#FFF, 2%)
+$fcolor:		#c0392b
+$scolor:		#2c3e50
+$maxwidth:		1300px
+
+body, header, nav, ul, li, ol, strong, b, i, em, h1, h2, h3, h4, p, div, article, section
+	margin:		0
+	padding:	0
+
+=transition($t)
+	-webkit-transition:		$t
+	-mz-transition:			$t
+	-moz-transition:		$t
+	-o-transition:			$t
+	transition:				$t
+
+=radius($r)
+	-webkit-border-radius:	$r
+	-mz-border-radius:		$r
+	-moz-border-radius:		$r
+	-o-border-radius:		$r
+	border-radius:			$r
+
+=shadow($s)
+	-webkit-border-shadow:	$s
+	-mz-border-shadow:		$s
+	-moz-border-shadow:		$s
+	-o-border-shadow:		$s
+	border-shadow:			$s
+
+body
+	background-color:	$bgcolor
+	font-family:		$fontFamily
+	font-size:			$fontSize
+	-webkit-font-smoothing: antialiased
+	font-smoothing: antialiased
+	-moz-font-smoothing: antialiased
+	-ms-font-smoothing: antialiased
