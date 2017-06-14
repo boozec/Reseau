@@ -1,7 +1,18 @@
 <header>
-	<section>
+	<section class="log" style="<%= "display:block;" if params.has_key?("r")%>">
+		<img src="assets/x_close.png" alt="X" class="x_close"/>
+		<div class="sign signup">
+			<%= render "users/formUp" %>
+		</div>
+		<div class="sign signin">
+			<%= render "users/formIn" %>
+		</div>
+	</section>
+	<section class="head">
 		<h1 id="logo">
-			<a href="/"><span>net</span>coding</a>
+			<a href="/">
+				<%= image_tag("logo.png", :alt => "logo") %>
+			</a>
 		</h1>
 		<nav>
 			<span class="expand_menu">
@@ -30,4 +41,5 @@
 			</div>
 		</nav>
 	</section>
+
 </header>

@@ -21,4 +21,18 @@ $(document).ready(function(){
   $('.menu').hover(function(){
     $(this).toggle();
   });
+  $('.butt_log').click(function(){
+    $('.log').fadeToggle();
+  });
+  $('.x_close').click(function(){
+    $('.log').hide();
+  });
+  $('.switchLogin').click(function(){
+    $('.signup').fadeOut();
+    $('.signin').delay(1000).fadeIn();
+  });
+  $('.switchSignup').click(function(){
+    $('.signin').fadeOut();
+    $('.signup').delay(1000).fadeIn();
+  });
 });

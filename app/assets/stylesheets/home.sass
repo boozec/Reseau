@@ -13,32 +13,20 @@ header
   border-bottom: rgba(0,0,0,.5) 2px solid
   margin-bottom: 20px
 
-  section
+  .head
     max-width: $maxwidth
     height: 50px
     margin: auto
 
     #logo
-      font-family: monospace
-      color: #FFF
-      font-size: 15pt
-      text-shadow: rgba(0,0,0,.5) 0 2px 0
-      font-weight: 300
-      margin: 1% 1.2%
+      width: 150px
+      margin: .6% 1.2%
       float: left
       cursor: pointer
       a
         text-decoration: none
-        color: #fff
-
-      span
-        background-color: #fff
-        color: #333
-        +radius(5px)
-        text-shadow: none
-        padding: 0 3px
-        margin-right: 3px
-
+      img
+        width: 150px
     nav
       .expand_menu
         color: darken(#ccc, 10%)
@@ -58,6 +46,10 @@ header
           margin: 6px 15px
           color: $fcolor
           cursor: pointer
+          text-shadow: rgba(0,0,0,0.5) 0 1px 0
+        .butt_log:hover
+          text-shadow: none
+          color: lighten($fcolor, 10%)
         form
           float: right
           .input

@@ -1,0 +1,12 @@
+<%= form_tag({controller: "users", action: "signup"}, method: "post") do %>
+  <h1>Registrati</h1>
+  <div class="errors">
+    <%= @errors if @errors != '' %>
+  </div>
+  <input type="hidden" name="r" value="1" />
+  <input id="user_email" placeholder="Email" type="email" name="email" />
+  <input id="user_nickname" placeholder="Nickname" type="text" name="nickname" />
+  <input id="user_password" placeholder="Password" type="password" name="password" />
+  <a class="switchLogin">Hai già un account?</a>
+  <input type="submit" name="commit" value="Registrati" id="submit" />
+<% end %>
