@@ -1,6 +1,9 @@
 <header>
+	<% unless check_conn %>
 	<section class="log" style="<%= "display:block;" if params.has_key?("r")%>">
-		<img src="assets/x_close.png" alt="X" class="x_close"/>
+		<a href="/" onclick="closex()">
+			<%= image_tag("x_close.png", :alt => "X", :class => "x_close") %>
+		</a>
 		<div class="sign signup">
 			<%= render "users/formUp" %>
 		</div>
@@ -8,6 +11,7 @@
 			<%= render "users/formIn" %>
 		</div>
 	</section>
+	<% end %>
 	<section class="head">
 		<h1 id="logo">
 			<a href="/">
@@ -25,13 +29,13 @@
 				<li>
 					<%= link_to "Codice", :controller => 'pages', :action => 'index' %>
 				</li>
+				<% #logout %>
 				<li>
 					<%= link_to "Utenti", :controller => 'pages', :action => 'index' %>
 				</li>
 			</ul>
-
 			<div class="r">
-			<a class="butt_log">Entra</a>
+			<%= "<a class=\"butt_log\">Entra</a>".html_safe unless check_conn %>
 			<%= form_tag({controller: "pages", action: "about"}, method: "get") do %>
   			<div class="input">
 					<input type="text" name="q" placeholder="Cerca" />

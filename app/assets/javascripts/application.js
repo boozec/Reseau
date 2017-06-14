@@ -22,11 +22,11 @@ $(document).ready(function(){
     $(this).toggle();
   });
   $('.butt_log').click(function(){
-    $('.log').fadeToggle();
+    $('.log').fadeIn();
   });
-  $('.x_close').click(function(){
+  function closex(){
     $('.log').hide();
-  });
+  };
   $('.switchLogin').click(function(){
     $('.signup').fadeOut();
     $('.signin').delay(1000).fadeIn();

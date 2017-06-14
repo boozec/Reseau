@@ -1,11 +1,15 @@
 module ApplicationHelper
   #funzione che controlla se l'utente è connesso o meno
   def check_conn
-    unless cookies[:user] then
-      return 'Non connesso'
+    if cookies[:user] then
+      return true
     else
-      return 'Connesso'
+      return false
     end
+  end
+
+  def logout
+    return cookies.delete :user
   end
 
   #funzione che esegue una query SQL
