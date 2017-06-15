@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="280"
+   width="1400"
    height="280"
-   viewBox="0 0 280 280"
+   viewBox="0 0 1400 280"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="logo.svg"
+   sodipodi:docname="logo_netcoding.svg"
    style="enable-background:new">
   <defs
      id="defs4" />
@@ -26,9 +26,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="6.8578124"
-     inkscape:cx="171.60763"
-     inkscape:cy="157.00732"
+     inkscape:zoom="4.8492057"
+     inkscape:cx="138.75409"
+     inkscape:cy="148.38271"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -39,48 +39,7 @@
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     units="px">
-    <sodipodi:guide
-       position="289.53195,632.68095"
-       orientation="1,0"
-       id="guide4337" />
-    <sodipodi:guide
-       position="330.77582,588.55001"
-       orientation="0,1"
-       id="guide4626" />
-    <sodipodi:guide
-       position="289.53195,618.65803"
-       orientation="0,1"
-       id="guide4634" />
-    <sodipodi:guide
-       position="309.32901,558.02954"
-       orientation="0,1"
-       id="guide4636" />
-    <sodipodi:guide
-       position="252.20625,588.55001"
-       orientation="1,0"
-       id="guide4640" />
-    <sodipodi:guide
-       position="327.27009,602.16048"
-       orientation="1,0"
-       id="guide4642" />
-    <sodipodi:guide
-       position="278.95193,527.57349"
-       orientation="0,1"
-       id="guide4660" />
-    <sodipodi:guide
-       position="286.3887,496.80566"
-       orientation="0,1"
-       id="guide4664" />
-    <sodipodi:guide
-       position="214.93735,575.98543"
-       orientation="1,0"
-       id="guide4668" />
-    <sodipodi:guide
-       position="364.40192,585.17203"
-       orientation="1,0"
-       id="guide4670" />
-  </sodipodi:namedview>
+     units="px" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -89,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -105,7 +64,7 @@
        id="path3374"
        sodipodi:sides="7"
        sodipodi:cx="140.35297"
-       sodipodi:cy="914.09396"
+       sodipodi:cy="914.09393"
        sodipodi:r1="127.68413"
        sodipodi:r2="115.03942"
        sodipodi:arg1="0.49787267"
@@ -131,12 +90,27 @@
        sodipodi:arg1="0.49787267"
        sodipodi:r2="115.03942"
        sodipodi:r1="127.68413"
-       sodipodi:cy="914.09396"
+       sodipodi:cy="914.09393"
        sodipodi:cx="140.35297"
        sodipodi:sides="7"
        id="path4250"
        style="opacity:0.96100003;fill:#2ecc71;fill-opacity:1;fill-rule:nonzero;stroke:#2ecc71;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        sodipodi:type="star" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="323.35196"
+       y="966.57489"
+       id="text3366"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3368"
+         x="323.35196"
+         y="966.57489"
+         style="font-size:187.5px;fill:#ffffff;"
+         dx="0 0 0 0"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold';fill:#ffffff;"
+   id="tspan3372">net</tspan>coding</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

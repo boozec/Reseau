@@ -1,13 +1,13 @@
 <header>
 	<% unless check_conn %>
-	<section class="log" style="<%= "display:block;" if params.has_key?("r")%>">
+	<section class="log" style="<%= "display:block;" if params.has_key?("r") || params.has_key?("l") || request.original_fullpath == "/signup" || request.original_fullpath == "/signin" %>">
 		<a href="/" onclick="closex()">
 			<%= image_tag("x_close.png", :alt => "X", :class => "x_close") %>
 		</a>
-		<div class="sign signup">
+		<div class="sign signup" style="<%= "display:none;" if params.has_key?("l") || request.original_fullpath == "/signin"%>">
 			<%= render "users/formUp" %>
 		</div>
-		<div class="sign signin">
+		<div class="sign signin" style="<%= "display:block;" if params.has_key?("l") || request.original_fullpath == "/signin"%>">
 			<%= render "users/formIn" %>
 		</div>
 	</section>
@@ -15,7 +15,7 @@
 	<section class="head">
 		<h1 id="logo">
 			<a href="/">
-				<%= image_tag("logo.png", :alt => "logo") %>
+				<%= image_tag("logo_netcoding.svg", :alt => "logo") %>
 			</a>
 		</h1>
 		<nav>

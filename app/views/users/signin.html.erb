@@ -1,0 +1,14 @@
+<% redIfConn if check_conn %>
+<% if params.has_key?("nickname") && params.has_key?("password") %>
+<% params["nickname"] = params["nickname"].gsub(/\s+/, "") %>
+  <% log = signin(params) %>
+  <% if log == 'OK' %>
+    <% @errors = "Bentornato!" %>
+  <% else %>
+    <% @errors = log %>
+  <% end %>
+<% else %>
+  <% @errors = "Riempi tutti i campi" %>
+<% end %>
+
+<%= render "layouts/header" %>
