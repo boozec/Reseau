@@ -1,3 +1,6 @@
+<% if check_conn %>
+	<% user = User.where(id: cookies[:user]).take %>
+<% end %>
 <header>
 	<% unless check_conn %>
 	<section class="log" style="<%= "display:block;" if params.has_key?("r") || params.has_key?("l") || request.original_fullpath == "/signup" || request.original_fullpath == "/signin" %>">
@@ -29,13 +32,33 @@
 				<li>
 					<%= link_to "Codice", :controller => 'pages', :action => 'index' %>
 				</li>
-				<% #logout %>
 				<li>
 					<%= link_to "Utenti", :controller => 'pages', :action => 'index' %>
 				</li>
 			</ul>
 			<div class="r">
-			<%= "<a class=\"butt_log\">Entra</a>".html_safe unless check_conn %>
+			<% unless check_conn %>
+				<%= "<a class=\"butt_log\">Entra</a>".html_safe %>
+			<% else %>
+				<span class="user_ex_menu">
+					<div class="user_image" style="background-image:url('<%= User.getAvatar(user.id)%>')"></div>
+				</span>
+				<ul class="menu_user">
+					<li>
+						<%= link_to "Nuovo post", :controller => 'pages', :action => 'index' %>
+					</li>
+					<li>
+						<%= link_to "Nuovo codice", :controller => 'pages', :action => 'index' %>
+					</li>
+					<hr>
+					<li>
+						<%= link_to "Impostazioni", :controller => 'pages', :action => 'index' %>
+					</li>
+					<li>
+						<%= link_to 'Logout', :controller => 'users', :action => 'logout' %>
+					</li>
+				</ul>
+			<% end %>
 			<%= form_tag({controller: "pages", action: "about"}, method: "get") do %>
   			<div class="input">
 					<input type="text" name="q" placeholder="Cerca" />

@@ -11,7 +11,11 @@ module UsersHelper
         begin
           query_exe("INSERT INTO users(id, nickname, password, email, rank, reg_ip, last_ip, startcode, created_at, updated_at)
           VALUES (NULL,'" + v["nickname"] + "','" + pass + "','" + v["email"] + "','0','" + ip + "','" + ip + "','" + startcode + "','" + date + "','" + date + "')")
-          cookies[:user] = {:value => v["nickname"], :expires => Time.now() + 3600}
+          newID = query_exe("SELECT id FROM users ORDER BY id DESC LIMIT 1")
+          newID.each do |r|
+            newID = r[0]
+          end
+          cookies[:user] = {:value => newID, :expires => Time.now() + 3600}
           redIfConn
         rescue
           return 'Errore'
@@ -32,7 +36,11 @@ module UsersHelper
       unless User.select(:id).where(:nickname => v["nickname"], :password => pass).count == 0
         begin
           query_exe("UPDATE users SET last_ip = '#{ip}', updated_at = '#{date}' WHERE nickname = '#{v["nickname"]}'")
-          cookies[:user] = {:value => v["nickname"], :expires => Time.now() + 3600}
+          userID = query_exe("SELECT id FROM users WHERE nickname = '#{v["nickname"]}'")
+          userID.each do |r|
+            userID = r[0]
+          end
+          cookies[:user] = {:value => userID, :expires => Time.now() + 3600}
           redIfConn
         rescue
           return 'Errore'
@@ -44,4 +52,5 @@ module UsersHelper
       return 'Utente non esistente'
     end
   end
+
 end

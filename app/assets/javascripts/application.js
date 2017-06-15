@@ -15,12 +15,25 @@
 //= require_tree .
 
 $(document).ready(function(){
+  $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+
+
   $('.expand_menu').hover(function(){
     $('.menu').toggle();
   });
   $('.menu').hover(function(){
     $(this).toggle();
   });
+
+  $('.user_ex_menu').hover(function(){
+    $('.menu_user').toggle();
+  });
+  $('.menu_user').hover(function(){
+    $(this).toggle();
+  });
+
   $('.butt_log').click(function(){
     $('.log').fadeIn();
   });

@@ -1,10 +1,10 @@
 <% redIfConn if check_conn %>
 <% if params.has_key?("nickname") && params.has_key?("email") && params.has_key?("password") %>
-<% params["email"] = strip_tags(params["email"].gsub(/\s+/, "")) %>
-<% params["nickname"] = strip_tags(params["nickname"].gsub(/\s+/, "")) %>
-  <% if params["nickname"].length > 2 && params["nickname"].length < 16 %>
-    <% if params["password"].length > 7 && params["password"].length < 43 %>
-      <% if params["email"].length > 3 && params["email"].length < 100 %>
+<% params[:email] = strip_tags(params[:email].gsub(/\s+/, "")) %>
+<% params[:nickname] = strip_tags(params[:nickname].gsub(/\s+/, "")) %>
+  <% if params[:nickname].length > 2 && params[:nickname].length < 16 %>
+    <% if params[:password].length > 7 && params[:password].length < 43 %>
+      <% if params[:email].length > 3 && params[:email].length < 100 %>
         <% res = signup(params) %>
         <% if res == 'OK' %>
           <% @errors = "Benvenuto!" %>

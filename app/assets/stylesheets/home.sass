@@ -12,7 +12,17 @@ header
   position: fixed
   border-bottom: rgba(0,0,0,.5) 2px solid
   margin-bottom: 20px
-
+  .menu_user
+    @extend .menu
+    position: absolute
+    margin-left: -70px
+    margin-top: 30px !important
+    hr
+      border-top: none
+      border-bottom: darken(#404040, 5%) 1px solid
+      width: 80%
+      border-right: none
+      border-left: none
   .head
     max-width: $maxwidth
     height: 50px
@@ -20,7 +30,7 @@ header
 
     #logo
       width: 150px
-      margin: .6% 1.2%
+      margin: .8% 1.2%
       float: left
       cursor: pointer
       a
@@ -47,6 +57,22 @@ header
           color: $fcolor
           cursor: pointer
           text-shadow: rgba(0,0,0,0.5) 0 1px 0
+        .user_ex_menu
+          display: block
+          float: left
+          height: 37px
+        .user_image
+          width: 25px
+          height: 25px
+          float: left
+          +radius(2px)
+          background-color: #fff
+          margin: 0 10px
+          +shadow(rgba(0, 0, 0, .2) 0 2px 0)
+          cursor: pointer
+          background-size: 100%
+          background-position: center
+
         .butt_log:hover
           text-shadow: none
           color: lighten($fcolor, 10%)
@@ -92,6 +118,7 @@ header
             color: darken(#ccc, 10%)
             display: block
             padding: 10px 20px
+            cursor: pointer
         li:hover
           background-color: darken(#404040, 10%)
           a
