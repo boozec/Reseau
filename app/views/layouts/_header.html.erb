@@ -4,7 +4,7 @@
 <header>
 	<% unless check_conn %>
 	<section class="log" style="<%= "display:block;" if params.has_key?("r") || params.has_key?("l") || request.original_fullpath == "/signup" || request.original_fullpath == "/signin" %>">
-		<a href="/" onclick="closex()">
+		<a class="_closex" <%= 'href="/"'.html_safe if request.original_fullpath == "/signin" ||  request.original_fullpath == "/signup"%>>
 			<%= image_tag("x_close.png", :alt => "X", :class => "x_close") %>
 		</a>
 		<div class="sign signup" style="<%= "display:none;" if params.has_key?("l") || request.original_fullpath == "/signin"%>">

@@ -14,12 +14,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
-  $('pre code').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-
-
+$(document).on('turbolinks:load', function() {
   $('.expand_menu').hover(function(){
     $('.menu').toggle();
   });
@@ -37,9 +32,9 @@ $(document).ready(function(){
   $('.butt_log').click(function(){
     $('.log').fadeIn();
   });
-  function closex(){
+  $('._closex').click(function(){
     $('.log').hide();
-  };
+  });
   $('.switchLogin').click(function(){
     $('.signup').fadeOut();
     $('.signin').delay(1000).fadeIn();
