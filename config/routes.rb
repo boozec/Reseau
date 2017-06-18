@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :users
-  resources :tests
   match ':controller(/:action(/:id))', :via => :get
 
   get '/about', to: 'pages#about'

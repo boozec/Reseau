@@ -1,0 +1,33 @@
+<div class="posts">
+  <article>
+    <div class="img_cover fa fa-<%= Post.categoryInfo('fa', 3) %>" style="border-color: #<%= Post.categoryInfo('color', 3) %>"></div>
+    <div class="c_comments img_cover">
+      <p>100</p>
+      <span>commenti</span>
+    </div>
+    <div class="info_p">
+      <h1 class="title_p">
+        <%= link_to "Cast in linguaggio C++", controller: "pages", action: "index" %>
+      </h1>
+      <div class="dett_p">
+      <ul>
+        <li>
+        <span>
+          <%= link_to "dunkerC", controller: "pages", action: "index" %>
+        </span>
+        </li>
+        <li><span>10h fa</span></li>
+        <li class="tag">
+          <a href="#">
+            <span><%= Post.categoryInfo('name', 3) %></span>
+          </a>
+        </li>
+        <li class="tag">
+          <a href="">
+            <span>cpp</span>
+          </a>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </article>

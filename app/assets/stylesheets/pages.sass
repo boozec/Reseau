@@ -5,6 +5,126 @@
 @import info
 
 header
+  width:	100%
+  height:	50px
+  background-color:	$hFontColor
+  padding: 5px 0
+  position: fixed
+  border-bottom: rgba(0,0,0,.5) 2px solid
+  margin-bottom: 20px
+  top: 0
+  .menu_user
+    @extend .menu
+    position: absolute
+    margin-left: -70px
+    margin-top: 30px !important
+    hr
+      border-top: none
+      border-bottom: darken(#404040, 5%) 1px solid
+      width: 80%
+      border-right: none
+      border-left: none
+  .head
+    max-width: $maxwidth
+    height: 50px
+    margin: auto
+
+    #logo
+      width: 150px
+      margin: .8% 1.2%
+      float: left
+      cursor: pointer
+      a
+        text-decoration: none
+      img
+        width: 150px
+    nav
+      .expand_menu
+        color: darken(#ccc, 10%)
+        padding: 10px
+        margin: 0 -5px
+        cursor: pointer
+        text-shadow: rgba(0,0,0,0.3) 0 2px 0px
+        position: absolute
+        font-size: 20pt
+      .expand_menu:hover
+        color: lighten(#ccc, 10%)
+      .r
+        margin: 15px 20px
+        float: right
+        .butt_log
+          float: left
+          margin: 6px 15px
+          color: $fcolor
+          cursor: pointer
+          text-shadow: rgba(0,0,0,0.5) 0 1px 0
+        .user_ex_menu
+          display: block
+          float: left
+          height: 37px
+        .user_image
+          width: 25px
+          height: 25px
+          float: left
+          +radius(2px)
+          background-color: #fff
+          margin: 0 10px
+          +shadow(rgba(0, 0, 0, .2) 0 2px 0)
+          cursor: pointer
+          background-size: 100%
+          background-position: center
+
+        .butt_log:hover
+          text-shadow: none
+          color: lighten($fcolor, 10%)
+        form
+          float: right
+          .input
+            background: #ccc
+            padding: 5px
+            +radius(100px)
+            color: #000
+            font-family: $fontFamily
+            width: 142px
+            input
+              font-size: 9pt
+              border: none
+              background: transparent
+              font-family: $fontFamily
+              outline-color: transparent
+              width: 120px
+          .sq
+            background-color: #fff
+            width: 25px
+            height: 25px
+            display: block
+            float: right
+            margin: -25px 128px
+            position: absolute
+            text-align: center
+            border-radius: 100%
+            i
+              margin-top: 5px
+      .menu
+        display: none
+        margin-top: 40px
+        +radius(4px)
+        float: left
+        background-color: #404040
+        overflow: hidden
+        li
+          list-style: none
+          a
+            text-decoration: none
+            color: darken(#ccc, 10%)
+            display: block
+            padding: 10px 20px
+            cursor: pointer
+        li:hover
+          background-color: darken(#404040, 10%)
+          a
+            color: lighten(#ccc, 10%)
+  /* signin/signup */
   .log
     width: 100%
     height: 100%

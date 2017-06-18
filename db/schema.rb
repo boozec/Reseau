@@ -10,17 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614090018) do
+ActiveRecord::Schema.define(version: 20170617103729) do
 
-  create_table "tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "nickname"
-    t.integer "rank"
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "titolo", limit: 50, null: false
+    t.integer "author", null: false
+    t.string "author_ip", limit: 30, null: false
+    t.integer "category", null: false
+    t.text "blocktest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "nickname", limit: 10, null: false
+    t.string "nickname", limit: 15, null: false
     t.string "password", limit: 60, null: false
     t.string "email", limit: 30, null: false
     t.integer "rank"
