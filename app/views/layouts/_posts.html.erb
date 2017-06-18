@@ -1,33 +1,42 @@
+<% if check_conn %>
+	<% user = User.where(id: cookies[:user]).take %>
+<% end %>
 <div class="posts">
+<% Post.order(:updated_at).reverse_order.take(10).each do |post| %>
   <article>
-    <div class="img_cover fa fa-<%= Post.categoryInfo('fa', 3) %>" style="border-color: #<%= Post.categoryInfo('color', 3) %>"></div>
+    <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
     <div class="c_comments img_cover">
       <p>100</p>
       <span>commenti</span>
     </div>
     <div class="info_p">
       <h1 class="title_p">
-        <%= link_to "Cast in linguaggio C++", controller: "pages", action: "index" %>
+        <%= link_to "#{post.titolo}", controller: "pages", action: "index" %>
       </h1>
       <div class="dett_p">
       <ul>
         <li>
         <span>
-          <%= link_to "dunkerC", controller: "pages", action: "index" %>
+          <% author_name = User.where(id: post.author).take %>
+          <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
         </span>
         </li>
-        <li><span>10h fa</span></li>
+        <% I18n.locale = :it %>
+        <li><span title="<%= post.updated_at.in_time_zone('Rome').to_time.strftime('%d/%m/%Y %H:%M') %>"><%= time_ago_in_words(post.updated_at) + ' fa' %></span></li>
         <li class="tag">
           <a href="#">
-            <span><%= Post.categoryInfo('name', 3) %></span>
+            <span><%= Post.categoryInfo('name', post.category) %></span>
           </a>
         </li>
+        <% Tag.where(post: 1, postID: post.id).take(7).each do |tag| %>
         <li class="tag">
-          <a href="">
-            <span>cpp</span>
+          <a href="#">
+            <span><%= tag.word %></span>
           </a>
         </li>
+        <% end %>
       </ul>
       </div>
     </div>
   </article>
+  <% end %>
