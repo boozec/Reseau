@@ -3,30 +3,17 @@
   <div class="last_chall">
     <h1>Ultime sfide</h1>
     <ul>
-      <li>
-        <div class="ch_title"><%= link_to "Array dinamici C++", controller: 'pages', action: 'index' %></div>
+      <% Post.order(:updated_at).where(category: 3).reverse_order.take(5).each do |post| %>
+      <li class="<%= cycle('', 'c2') %>">
+        <div class="ch_title"><%= link_to "#{post.titolo}", controller: 'pages', action: 'index' %></div>
         <div class="ch_infos">
           <%= link_to "Partecipa", {controller: 'pages', action: 'index'}, class: 'ch_button' %>
-          <p>creata da <%= link_to "dunkerc", controller: 'pages', action: 'index' %></p>
+          <% author_name = User.where(id: post.author).take %>
+          <p>creata da <%= link_to "#{author_name.nickname}", controller: 'pages', action: 'index' %></p>
           <p>commenti <a>666</a></p>
         </div>
       </li>
-      <li class="c2">
-        <div class="ch_title"><%= link_to "Array dinamici C++", controller: 'pages', action: 'index' %></div>
-        <div class="ch_infos">
-          <%= link_to "Partecipa", {controller: 'pages', action: 'index'}, class: 'ch_button' %>
-          <p>creata da <%= link_to "dunkerc", controller: 'pages', action: 'index' %></p>
-          <p>commenti <a>666</a></p>
-        </div>
-      </li>
-      <li>
-        <div class="ch_title"><%= link_to "Array dinamici C++", controller: 'pages', action: 'index' %></div>
-        <div class="ch_infos">
-          <%= link_to "Partecipa", {controller: 'pages', action: 'index'}, class: 'ch_button' %>
-          <p>creata da <%= link_to "dunkerc", controller: 'pages', action: 'index' %></p>
-          <p>commenti <a>666</a></p>
-        </div>
-      </li>
+      <% end %>
     </ul>
   </div>
   <div class="last_comments">

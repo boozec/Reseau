@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618180622) do
+ActiveRecord::Schema.define(version: 20170621142310) do
+
+  create_table "loves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.boolean "post"
+    t.integer "postID"
+    t.integer "commentID"
+    t.string "author_ip", limit: 30, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "titolo", limit: 50, null: false
@@ -23,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170618180622) do
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "word", limit: 20, null: false
+    t.string "word", limit: 10, null: false
     t.boolean "post"
     t.integer "postID"
     t.integer "commentID"

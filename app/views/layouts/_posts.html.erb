@@ -9,7 +9,7 @@
     <div class="info_p">
       <h1 class="title_p">
         <%= link_to "#{post.titolo}", controller: "pages", action: "index" %>
-				<span class="votes_p"><i class="fa fa-heart"></i> 10</span>
+				<span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: post.id).count %></span>
 			</h1>
       <div class="dett_p">
       <ul>
