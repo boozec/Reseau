@@ -1,8 +1,5 @@
-<% if check_conn %>
-	<% user = User.where(id: cookies[:user]).take %>
-<% end %>
 <div class="posts">
-<% Post.order(:updated_at).reverse_order.take(10).each do |post| %>
+<% Post.order(:updated_at).reverse_order.take(33).each do |post| %>
   <article>
     <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
     <div class="c_comments img_cover">
@@ -12,7 +9,8 @@
     <div class="info_p">
       <h1 class="title_p">
         <%= link_to "#{post.titolo}", controller: "pages", action: "index" %>
-      </h1>
+				<span class="votes_p"><i class="fa fa-heart"></i> 10</span>
+			</h1>
       <div class="dett_p">
       <ul>
         <li>
@@ -22,17 +20,13 @@
         </span>
         </li>
         <% I18n.locale = :it %>
-        <li><span title="<%= post.updated_at.in_time_zone('Rome').to_time.strftime('%d/%m/%Y %H:%M') %>"><%= time_ago_in_words(post.updated_at) + ' fa' %></span></li>
+        <li><span title="<%= post.updated_at.strftime('%d/%m/%Y %H:%M') %>"><%= time_ago_in_words(post.updated_at) + ' fa' %></span></li>
         <li class="tag">
-          <a href="#">
-            <span><%= Post.categoryInfo('name', post.category) %></span>
-          </a>
+					<%= link_to "<span>#{Post.categoryInfo('name', post.category)}</span>".html_safe, controller: "pages", action: "tags", w: Post.categoryInfo('name', post.category) %>
         </li>
         <% Tag.where(post: 1, postID: post.id).take(7).each do |tag| %>
         <li class="tag">
-          <a href="#">
-            <span><%= tag.word %></span>
-          </a>
+          <%= link_to "<span>#{tag.word}</span>".html_safe, controller: "pages", action: "tags", w: tag.word %>
         </li>
         <% end %>
       </ul>
@@ -40,3 +34,4 @@
     </div>
   </article>
   <% end %>
+</div>

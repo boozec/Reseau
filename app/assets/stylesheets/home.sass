@@ -23,6 +23,7 @@
       background: darken(#FFF, 10%)
       +radius(4px)
       margin-bottom: 5px
+      border-bottom: rgba(0,0,0,0.1) 2px solid
 
       .c_comments
         margin: 0 5px
@@ -66,6 +67,16 @@
         .title_p a:hover
           text-decoration: underline
 
+        .votes_p
+          margin: 5px
+          +radius(5px)
+          display: block
+          float: right
+          background-color: #c0392b
+          padding: 3px
+          color: #FFF
+          cursor: default
+
         .dett_p
           font-size: 10pt
           margin-top: 11px
@@ -97,3 +108,81 @@
 
           span a
             color: #000
+
+  .sidebar
+    width: 24%
+    height: auto
+    float: right
+    overflow: hidden
+
+    .s_register
+      width: 93%
+      height: 35px
+      padding: 10px
+      background-color: $fcolor
+      +radius(4px)
+      border-bottom: rgba(0,0,0,0.1) 2px solid
+      margin-bottom: 20px
+      a
+        text-decoration: none
+        color: #FFF
+        font-size: 15pt
+        text-align: center
+        display: block
+        line-height: 34px
+        font-family: 'Lato'
+    .s_register:hover
+      background-color: lighten($fcolor, 10%)
+
+    .last_chall ul li
+      height: 42px !important
+      .ch_button
+        float: right
+        background-color: #e74c3c
+        color: #FFF
+        padding: 7px
+        +radius(4px)
+      .ch_button:hover
+        text-decoration: none
+        background-color: darken(#e74c3c, 5%)
+
+    .last_comments,
+    .last_chall
+      width: 100%
+      height: auto
+      background-color: #e6e6e6
+      +radius(4px)
+      margin-bottom: 20px
+      border-bottom: rgba(0,0,0,0.1) 2px solid
+
+      h1
+        font-size: 15pt
+        font-family: "Lato", sans-serif
+        text-shadow: rgba(255, 255, 255, 0.4) 0 2px 0
+        color: #1E1E1E
+        text-align: center
+        padding: 3px
+      ul li.c2
+        background-color: darken(#e6e6e6, 5%)
+      ul li
+        padding: 10px
+        list-style: none
+        height: 30px
+        .c_avatar
+          width: 30px
+          height: 30px
+          background-position: center
+          background-size: cover
+          +radius(2px)
+          float: left
+        .c_infos
+          float: left
+          margin: 0 7px
+          font-size: 9pt
+        a
+          color: #1e1e1e
+          text-align: center
+          font-weight: bold
+          text-decoration: none
+        a:hover
+          text-decoration: underline

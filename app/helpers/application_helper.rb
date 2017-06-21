@@ -16,4 +16,15 @@ module ApplicationHelper
   def query_exe(sql)
     return ActiveRecord::Base.connection.execute(sql)
   end
+
+  # funzione che restituisce il valore di un parametro dell'utente
+  # es: " userd 'id' " -> 1
+  def userd(param)
+    if check_conn
+      t = User.where(id: cookies[:user]).take
+      return t[param]
+    else
+      return nil
+    end
+  end
 end

@@ -1,6 +1,3 @@
-<% if check_conn %>
-	<% user = User.where(id: cookies[:user]).take %>
-<% end %>
 <header>
 	<% unless check_conn %>
 	<section class="log" style="<%= "display:block;" if params.has_key?("r") || params.has_key?("l") || request.original_fullpath == "/signup" || request.original_fullpath == "/signin" %>">
@@ -41,7 +38,7 @@
 				<%= "<a class=\"butt_log\">Entra</a>".html_safe %>
 			<% else %>
 				<span class="user_ex_menu">
-					<div class="user_image" style="background-image:url('<%= User.getAvatar(user.id)%>')"></div>
+					<div class="user_image" style="background-image:url('<%= User.getAvatar(userd 'id')%>')"></div>
 				</span>
 				<ul class="menu_user">
 					<li>

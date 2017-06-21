@@ -1,0 +1,58 @@
+<div class="sidebar">
+  <%= "<div class=\"s_register\">#{link_to "Registrati", controller: 'users', action: 'signup'}</div>".html_safe unless check_conn %>
+  <div class="last_chall">
+    <h1>Ultime sfide</h1>
+    <ul>
+      <li>
+        <div class="ch_title"><%= link_to "Array dinamici C++", controller: 'pages', action: 'index' %></div>
+        <div class="ch_infos">
+          <%= link_to "Partecipa", {controller: 'pages', action: 'index'}, class: 'ch_button' %>
+          <p>creata da <%= link_to "dunkerc", controller: 'pages', action: 'index' %></p>
+          <p>commenti <a>666</a></p>
+        </div>
+      </li>
+      <li class="c2">
+        <div class="ch_title"><%= link_to "Array dinamici C++", controller: 'pages', action: 'index' %></div>
+        <div class="ch_infos">
+          <%= link_to "Partecipa", {controller: 'pages', action: 'index'}, class: 'ch_button' %>
+          <p>creata da <%= link_to "dunkerc", controller: 'pages', action: 'index' %></p>
+          <p>commenti <a>666</a></p>
+        </div>
+      </li>
+      <li>
+        <div class="ch_title"><%= link_to "Array dinamici C++", controller: 'pages', action: 'index' %></div>
+        <div class="ch_infos">
+          <%= link_to "Partecipa", {controller: 'pages', action: 'index'}, class: 'ch_button' %>
+          <p>creata da <%= link_to "dunkerc", controller: 'pages', action: 'index' %></p>
+          <p>commenti <a>666</a></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="last_comments">
+    <h1>Ultimi commenti</h1>
+    <ul>
+      <li>
+        <div class="c_avatar" style="background-image: url('assets/avatar.jpg')"></div>
+        <div class="c_infos">
+          <p><%= link_to "Funzioni stile C++", controller: 'pages', action: 'index' %></p>
+          <p><span><%= link_to "dunkerc", controller: 'pages', action: 'index' %>, 2 giorni fa</span></p>
+        </div>
+      </li>
+      <li class="c2">
+        <div class="c_avatar" style="background-image: url('assets/avatar.jpg')"></div>
+        <div class="c_infos">
+          <p><%= link_to "Funzioni stile C++", controller: 'pages', action: 'index' %></p>
+          <p><span><%= link_to "dunkerc", controller: 'pages', action: 'index' %>, 2 giorni fa</span></p>
+        </div>
+      </li>
+      <li>
+        <div class="c_avatar" style="background-image: url('assets/avatar.jpg')"></div>
+        <div class="c_infos">
+          <p><%= link_to "Funzioni stile C++", controller: 'pages', action: 'index' %></p>
+          <p><span><%= link_to "dunkerc", controller: 'pages', action: 'index' %>, 2 giorni fa</span></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
