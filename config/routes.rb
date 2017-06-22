@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/tags/(/:w)', to: 'pages#tags'
 
+  get 'topic/(/:postID)', to: 'post#topic'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

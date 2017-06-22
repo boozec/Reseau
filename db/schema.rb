@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170621142310) do
     t.integer "author", null: false
     t.string "author_ip", limit: 30, null: false
     t.integer "category", null: false
-    t.text "blocktest", null: false
+    t.text "blocktext", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

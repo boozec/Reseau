@@ -1,0 +1,44 @@
+// Place all the styles related to the Post controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import info
+
+.topics
+  width: 73%
+  height: auto
+  float: left
+  margin-right: 1%
+  padding: 10px
+  background: #FAFAFA
+  margin-bottom: 5px
+
+  .titolo
+    font-size: 23pt
+    font-family: 'Lato', sans-serif
+    text-shadow: rgba(255,255,255,0.4) 0 2px 0
+    color: #1E1E1E
+    text-decoration: none
+    padding: 0 5px 15px 5px
+    border-bottom: rgba(0,0,0,0.1) 2px solid
+    margin-top: -7px
+
+  .t_body
+    margin: 10px 0 0
+    padding: 10px 10px 20px 10px
+    border-bottom: rgba(0, 0, 0, 0.1) 2px solid
+
+    blockquote
+      background-color: #E6E6E6
+      padding: 10px
+      margin-left: 20px
+      +radius(4px)
+
+    pre
+      padding: 10px
+      +radius(4px)
+      +shadow(rgba(0,0,0,0.2) 0 0 2px)
+      background-color: #FFF
+
+    ul li
+      list-style-position: inside

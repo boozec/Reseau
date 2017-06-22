@@ -1,0 +1,18 @@
+<h1 class="titolo"><%= @post.titolo %></h1>
+<div id="wmd-button-bar" style="display:none;"></div>
+<textarea id="wmd-input" class="wmd-input" disabled style="display:none;"><%= @post.blocktext %></textarea>
+<div class="t_body">
+  <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+</div>
+
+<script>
+
+  var converter1 = Markdown.getSanitizingConverter();
+  Markdown.Extra.init(converter1, {extensions: "all"});
+  var editor1 = new Markdown.Editor(converter1);
+  editor1.hooks.chain("onPreviewRefresh", prettyPrint); // google code prettify
+  converter1.hooks.chain("preConversion", function (text) {
+    return text.replace(/\b(a\w*)/gi, "*$1*");
+  });
+  editor1.run();
+</script>
