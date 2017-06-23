@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.1]
       t.string 'author_ip', limit: 30, null: false
       t.integer 'category', null: false
       t.text 'blocktext', null: false
+      t.boolean 'active', null: false
       t.timestamps
     end
   end

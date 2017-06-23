@@ -1,7 +1,7 @@
 <div class="posts">
-<% Post.order(:updated_at).reverse_order.take(33).each do |post| %>
+<% Post.order(:updated_at).reverse_order.where(active: 1).take(33).each do |post| %>
   <article>
-    <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
+    <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" title="<%= Post.categoryInfo('name', post.category).capitalize %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
     <div class="c_comments img_cover">
       <p>100</p>
       <span>commenti</span>

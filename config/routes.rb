@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'topic/(/:postID)', to: 'post#topic'
 
-
+  get 'add/(/:id)', to: 'post#addVote'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'pages#index'

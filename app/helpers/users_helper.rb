@@ -10,7 +10,7 @@ module UsersHelper
       unless User.select(:id).where(:email => v["email"]).count > 0
         begin
           query_exe("INSERT INTO users(id, nickname, password, email, rank, reg_ip, last_ip, startcode, created_at, updated_at)
-          VALUES (NULL,'" + v["nickname"] + "','" + pass + "','" + v["email"] + "','0','" + ip + "','" + ip + "','" + startcode + "','" + date + "','" + date + "')")
+          VALUES (NULL,'#{v["nickname"]}','#{pass}','#{v["email"]}','0','#{ip}','#{ip}','#{startcode}','#{date}','#{date}')")
           newID = query_exe("SELECT id FROM users ORDER BY id DESC LIMIT 1")
           newID.each do |r|
             newID = r[0]
@@ -34,16 +34,20 @@ module UsersHelper
 
     unless User.select(:id).where(:nickname => v["nickname"]).count == 0
       unless User.select(:id).where(:nickname => v["nickname"], :password => pass).count == 0
-        begin
-          query_exe("UPDATE users SET last_ip = '#{ip}', updated_at = '#{date}' WHERE nickname = '#{v["nickname"]}'")
-          userID = query_exe("SELECT id FROM users WHERE nickname = '#{v["nickname"]}'")
-          userID.each do |r|
-            userID = r[0]
+        unless User.select(:id).where(:rank => -1).count == 1
+          begin
+            query_exe("UPDATE users SET last_ip = '#{ip}', updated_at = '#{date}' WHERE nickname = '#{v["nickname"]}'")
+            userID = query_exe("SELECT id FROM users WHERE nickname = '#{v["nickname"]}'")
+            userID.each do |r|
+              userID = r[0]
+            end
+            cookies[:user] = {:value => userID, :expires => Time.now() + 3600}
+            redIfConn
+          rescue
+            return 'Errore'
           end
-          cookies[:user] = {:value => userID, :expires => Time.now() + 3600}
-          redIfConn
-        rescue
-          return 'Errore'
+        else
+          return 'Utente bannato'
         end
       else
         return 'Password sbagliata'

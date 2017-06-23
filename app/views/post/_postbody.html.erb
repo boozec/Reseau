@@ -4,6 +4,18 @@
 <div class="t_body">
   <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
 </div>
+<div class="t_info">
+  <% author_name = User.where(id: @post.author).take %>
+  <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
+  <% I18n.locale = :it %>
+  <span title="<%= @post.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.updated_at) + ' fa' %></span>
+  <% if Love.select(:id).where(post: 1, postID: @post.id, author_id: "#{userd 'id'}").count > 0 %>
+    <% heart = '-o'%>
+  <% else %>
+    <% heart = nil %>
+  <% end %>
+  <%= link_to "<i class=\"fa fa-heart#{heart}\"></i> #{Love.select(:id).where(post: 1, postID: @post.id).count}".html_safe, {controller: "post", action: "addVote", id: @post.id}, class: "votes_p" %>
+</div>
 
 <script>
 

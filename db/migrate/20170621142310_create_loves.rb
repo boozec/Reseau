@@ -4,6 +4,7 @@ class CreateLoves < ActiveRecord::Migration[5.1]
       t.boolean 'post'
       t.integer 'postID'
       t.integer 'commentID'
+      t.integer 'author_id', null: false
       t.string 'author_ip', limit: 30, null: false
       t.timestamps
     end
