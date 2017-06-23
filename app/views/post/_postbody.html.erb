@@ -1,4 +1,11 @@
-<h1 class="titolo"><%= @post.titolo %></h1>
+<% if Love.select(:id).where(post: 1, postID: @post.id, author_id: "#{userd 'id'}").count > 0 %>
+  <% direction = 'down' %>
+  <% titleDirection = 'Abbassa numero Loves' %>
+<% else %>
+  <% direction = 'up' %>
+  <% titleDirection = 'Aumenta numero Loves' %>
+<% end %>
+<h1 class="titolo"><%= @post.titolo %> <%= link_to "<i class=\"fa fa-chevron-circle-#{direction}\"></i>".html_safe, {controller: "post", action: "addVote", id: @post.id}, class: "votes_#{direction}", title: titleDirection if check_conn%></h1>
 <div id="wmd-button-bar" style="display:none;"></div>
 <textarea id="wmd-input" class="wmd-input" disabled style="display:none;"><%= @post.blocktext %></textarea>
 <div class="t_body">
@@ -9,12 +16,7 @@
   <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
   <% I18n.locale = :it %>
   <span title="<%= @post.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.updated_at) + ' fa' %></span>
-  <% if Love.select(:id).where(post: 1, postID: @post.id, author_id: "#{userd 'id'}").count > 0 %>
-    <% heart = '-o'%>
-  <% else %>
-    <% heart = nil %>
-  <% end %>
-  <%= link_to "<i class=\"fa fa-heart#{heart}\"></i> #{Love.select(:id).where(post: 1, postID: @post.id).count}".html_safe, {controller: "post", action: "addVote", id: @post.id}, class: "votes_p" %>
+  <span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: @post.id).count %></span>
 </div>
 
 <script>
