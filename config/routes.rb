@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get 'lovep/(/:id)', to: 'post#addVote'
   get 'lovec/(/:id)', to: 'post#addVoteComment'
+
+  post '/commenta', to: 'post#addComment'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'pages#index'

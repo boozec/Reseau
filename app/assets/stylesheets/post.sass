@@ -178,8 +178,55 @@
           width: 100%
           +radius(4px)
 
-        pre
-          padding: 10px
-          +radius(4px)
-          +shadow(rgba(0,0,0,0.2) 0 0 2px)
-          background-color: #FFF
+          table tr th, table tr td
+            border: #ddd 1px solid
+            background-color: #FFF
+            padding: 5px
+            +radius(2px)
+
+          pre
+            padding: 10px
+            +radius(4px)
+            +shadow(rgba(0,0,0,0.2) 0 0 2px)
+            background-color: #FFF
+
+  .add_comments
+    .errors
+      padding: 20px 0 10px
+      color: red
+    form textarea, form input
+      background-color: #FFF
+      color: #1e1e1e
+      padding: 10px
+      margin: 10px 0px
+      width: 888px
+      border-radius: 4px
+      font-family: $fontFamily
+      font-size: 11pt
+      max-width: 97%
+      height: 16px
+      max-height: 300px
+      outline-color: $fcolor
+      +transition(.2s)
+      border: #CCC 1px solid
+    form textarea:focus
+      height: 150px
+
+    form #submit
+      height: 35px
+      background-color: $fcolor
+      float: right
+      width: 100px
+      margin-right: 2%
+      color: #fff
+      cursor: pointer
+      font-size: 9pt
+      border: none
+      outline-color: transparent
+      margin: 5px auto
+      padding: 10px
+      +radius(100px)
+      font-family: $fontFamily
+
+    form #submit:hover
+      background-color: darken($fcolor, 10%)

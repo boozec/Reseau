@@ -1,5 +1,5 @@
 <section class="comments">
-<% Comment.order(:updated_at).reverse_order.where(active: 1, post_id: @post.id).take(100).each do |comment| %>
+<% Comment.order(:updated_at).where(active: 1, post_id: @post.id).take(100).each do |comment| %>
   <div id="c_<%= comment.id %>" class="cm_body">
     <div class="cm_b_left">
       <div class="cm_b_l_avatar" style="background-image:url('/<%= User.getAvatar(comment.author_id)%>')"></div>
@@ -25,7 +25,7 @@
         <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
         <% I18n.locale = :it %>
         <span title="<%= comment.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(comment.updated_at) + ' fa' %> &middot;</span>
-        <span title="Commenti totali dell'utente"><%= Comment.select(:id).where(author_id: comment.author_id).count %> commenti</span>
+        <span title="Commenti totali dell'utente"><%= Comment.select(:id).where(author_id: comment.author_id, active: 1).count %> commenti</span>
       </div>
       <ul>
       <% Tag.where(post: 0, commentID: comment.id).take(7).each do |tag| %>
@@ -35,7 +35,7 @@
       <% end %>
       </ul>
       <div id="wmd-button-bar-<%= comment.id %>" style="display:none;"></div>
-      <textarea id="wmd-input-<%= comment.id %>" class="wmd-input" disabled style="display:none;"><%= comment.blocktext %></textarea>
+      <textarea id="wmd-input-<%= comment.id %>" class="wmd-input" disabled style="display:none;"><%= sanitize comment.blocktext %></textarea>
       <blockquote class="cm_b_r_text">
         <div id="wmd-preview-<%= comment.id %>" class="wmd-panel wmd-preview"></div>
       </blockquote>
@@ -50,7 +50,7 @@
         var options = {
           helpButton: { handler: help }
         };
-        var editor = new Markdown.Editor(converter, "-1", options);
+        var editor = new Markdown.Editor(converter, "-<%= comment.id %>", options);
         editor.run();
       })();
       </script>
@@ -59,3 +59,14 @@
   </div>
 <% end %>
 </section>
+<% if check_conn %>
+<section class="add_comments" id="add">
+  <%= form_tag({controller: "post", action: "addComment", t: @post.id}, method: "post") do %>
+    <%= "<div class=\"errors\">#{Comment.commentsError(params[:e])}</div>".html_safe if params.has_key?"e" %>
+    <textarea name="blocktext" placeholder="Inserisci un commento" required></textarea>
+    <input type="text" name="tags" placeholder="Tags, separati da una virgola. (esempio,esempio2)" />
+    <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
+    <input type="submit" value="Invia" id="submit" />
+  <% end %>
+</section>
+<% end %>

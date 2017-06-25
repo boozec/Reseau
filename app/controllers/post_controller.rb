@@ -1,6 +1,7 @@
 class PostController < ApplicationController
   def topic
     @post = Post.where(id: params['postID'], active: 1).take
+    @errors = ''
     if @post == nil then
       redirect_to root_path
     else

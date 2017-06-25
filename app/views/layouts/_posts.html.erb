@@ -3,7 +3,7 @@
   <article>
     <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" title="<%= Post.categoryInfo('name', post.category).capitalize %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
     <div class="c_comments img_cover">
-      <p>100</p>
+      <p><%= Comment.select(:id).where(post_id: post.id).count %></p>
       <span>commenti</span>
     </div>
     <div class="info_p">
