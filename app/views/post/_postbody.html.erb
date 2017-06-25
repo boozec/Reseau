@@ -6,6 +6,16 @@
   <% titleDirection = 'Aumenta numero Loves' %>
 <% end %>
 <h1 class="titolo"><%= @post.titolo %> <%= link_to "<i class=\"fa fa-chevron-circle-#{direction}\"></i>".html_safe, {controller: "post", action: "addVote", id: @post.id}, class: "votes_#{direction}", title: titleDirection if check_conn%></h1>
+<ul>
+<li class="tag">
+  <%= link_to "<span>#{Post.categoryInfo('name', @post.category)}</span>".html_safe, controller: "pages", action: "tags", w: Post.categoryInfo('name', @post.category) %>
+</li>
+<% Tag.where(post: 1, postID: @post.id).take(7).each do |tag| %>
+<li class="tag">
+  <%= link_to "<span>#{tag.word}</span>".html_safe, controller: "pages", action: "tags", w: tag.word %>
+</li>
+<% end %>
+</ul>
 <div id="wmd-button-bar" style="display:none;"></div>
 <textarea id="wmd-input" class="wmd-input" disabled style="display:none;"><%= @post.blocktext %></textarea>
 <div class="t_body">
@@ -16,11 +26,13 @@
   <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
   <% I18n.locale = :it %>
   <span title="<%= @post.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.updated_at) + ' fa' %></span>
-  <span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: @post.id).count %></span>
+  <div class="t_i_right">
+    <span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: @post.id).count %></span>
+    <span class="comments_p"><i class="fa fa-comments"></i> <%= Comment.select(:id).where(post_id: @post.id).count %></span>
+  </div>
 </div>
 
 <script>
-
   var converter1 = Markdown.getSanitizingConverter();
   Markdown.Extra.init(converter1, {extensions: "all"});
   var editor1 = new Markdown.Editor(converter1);

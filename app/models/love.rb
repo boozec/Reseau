@@ -6,4 +6,12 @@ class Love < ApplicationRecord
       what = 'add'
     end
   end
+
+  def self.whatLoveC(idComment, idAuthor)
+    if Love.select(:id).where(post: 0, commentID: idComment, author_id: idAuthor).count > 0
+      what = 'del'
+    else
+      what = 'add'
+    end
+  end
 end

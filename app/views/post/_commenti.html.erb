@@ -1,0 +1,61 @@
+<section class="comments">
+<% Comment.order(:updated_at).reverse_order.where(active: 1, post_id: @post.id).take(100).each do |comment| %>
+  <div id="c_<%= comment.id %>" class="cm_body">
+    <div class="cm_b_left">
+      <div class="cm_b_l_avatar" style="background-image:url('/<%= User.getAvatar(comment.author_id)%>')"></div>
+      <div class="cm_b_l_vote">
+      <% if Love.select(:id).where(post: 0, commentID: comment.id, author_id: "#{userd 'id'}").count > 0 %>
+        <% direction = 'down' %>
+        <% titleDirection = 'Non Lovvo più questo commento' %>
+      <% else %>
+        <% direction = 'up' %>
+        <% titleDirection = 'Lovvo questo commento' %>
+      <% end %>
+      <% if check_conn %>
+        <%= link_to "<i class=\"fa fa-chevron-circle-#{direction}\"></i>".html_safe, {controller: "post", action: "addVoteComment", id: comment.id, topic: @post.id}, class: "votes_#{direction}", title: titleDirection%>
+      <% else %>
+        <%= link_to "<i class=\"fa fa-chevron-circle-up\"></i>".html_safe, {controller: "users", action: "signin"}, class: "votes_up", title: "Entra per inserire il Love"%>
+      <% end %>
+      <span><%= Love.select(:id).where(post: 0, commentID: comment.id).count %></span>
+      </div>
+    </div>
+    <div class="cm_b_right">
+      <div class="cm_b_r_info">
+        <% author_name = User.where(id: comment.author_id).take %>
+        <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
+        <% I18n.locale = :it %>
+        <span title="<%= comment.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(comment.updated_at) + ' fa' %> &middot;</span>
+        <span title="Commenti totali dell'utente"><%= Comment.select(:id).where(author_id: comment.author_id).count %> commenti</span>
+      </div>
+      <ul>
+      <% Tag.where(post: 0, commentID: comment.id).take(7).each do |tag| %>
+      <li class="tag">
+        <%= link_to "<span>#{tag.word}</span>".html_safe, controller: "pages", action: "tags", w: tag.word %>
+      </li>
+      <% end %>
+      </ul>
+      <div id="wmd-button-bar-<%= comment.id %>" style="display:none;"></div>
+      <textarea id="wmd-input-<%= comment.id %>" class="wmd-input" disabled style="display:none;"><%= comment.blocktext %></textarea>
+      <blockquote class="cm_b_r_text">
+        <div id="wmd-preview-<%= comment.id %>" class="wmd-panel wmd-preview"></div>
+      </blockquote>
+
+      <script>
+      (function () {
+        var converter = new Markdown.Converter();
+
+        // "all" is the default
+        Markdown.Extra.init(converter, {highlighter: "hljs"});
+        var help = function () { alert("?"); }
+        var options = {
+          helpButton: { handler: help }
+        };
+        var editor = new Markdown.Editor(converter, "-1", options);
+        editor.run();
+      })();
+      </script>
+
+    </div>
+  </div>
+<% end %>
+</section>

@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621142310) do
+ActiveRecord::Schema.define(version: 20170625094445) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "author_id", null: false
+    t.string "author_ip", limit: 30, null: false
+    t.integer "post_id", null: false
+    t.text "blocktext", null: false
+    t.boolean "active", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "loves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.boolean "post"
     t.integer "postID"
     t.integer "commentID"
-    t.integer 'author_id', null: false
+    t.integer "author_id", null: false
     t.string "author_ip", limit: 30, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

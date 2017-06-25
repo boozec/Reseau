@@ -9,7 +9,7 @@
         <div class="ch_infos">
           <%= link_to "Partecipa", {controller: "post", action: "topic", postID: post.id}, class: 'ch_button' %>
           <% author_name = User.where(id: post.author).take %>
-          <p>creata da <%= link_to "#{author_name.nickname}", controller: 'pages', action: 'index' %></p>
+          <p>creata da <%= link_to "#{author_name.nickname}", {controller: 'pages', action: 'index'}, class: 'ch_createdBy' %></p>
           <p>commenti <a>666</a></p>
         </div>
       </li>
@@ -23,7 +23,7 @@
         <div class="c_avatar" style="background-image: url('/assets/avatar.jpg')"></div>
         <div class="c_infos">
           <p><%= link_to "Funzioni stile C++", controller: 'pages', action: 'index' %></p>
-          <p><span><%= link_to "dunkerc", controller: 'pages', action: 'index' %>, 2 giorni fa</span></p>
+          <p><span><%= link_to "dunkerc", {controller: 'pages', action: 'index'}, class: 'ch_createdBy' %>, 2 giorni fa</span></p>
         </div>
       </li>
       <li class="c2">

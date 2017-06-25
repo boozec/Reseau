@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1400"
+   width="1250"
    height="280"
-   viewBox="0 0 1400 280"
+   viewBox="0 0 1250 280"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -26,11 +26,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.8492057"
-     inkscape:cx="138.75409"
+     inkscape:zoom="0.60615071"
+     inkscape:cx="653.13894"
      inkscape:cy="148.38271"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -98,7 +98,7 @@
        sodipodi:type="star" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="323.35196"
        y="966.57489"
        id="text3366"
@@ -107,10 +107,10 @@
          id="tspan3368"
          x="323.35196"
          y="966.57489"
-         style="font-size:187.5px;fill:#ffffff;"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:187.5px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Medium';fill:#ffffff"
          dx="0 0 0 0"><tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold';fill:#ffffff;"
-   id="tspan3372">net</tspan>coding</tspan></text>
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Light';fill:#ffffff"
+   id="tspan4163">net</tspan>coding</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -151,7 +151,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 147.53247,857.32917 74.65938,966.0373"
        id="path4186"
        inkscape:connector-curvature="0"
@@ -159,14 +159,14 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 147.56893,856.96462 4.08293,72.90955"
        id="path4188"
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 217.56209,907.70966 147.49602,857.18334"
        id="path4190"
        inkscape:connector-curvature="0"

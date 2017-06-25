@@ -15,4 +15,12 @@ class PostController < ApplicationController
       @page_title = 'Aggiungi Love'
     end
   end
+
+  def addVoteComment
+    if Comment.where(id: params['id'], active: 1).take == nil then
+      redirect_to root_path
+    else
+      @page_title = 'Aggiungi Love a commento'
+    end
+  end
 end

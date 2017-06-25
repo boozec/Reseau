@@ -12,7 +12,15 @@
   padding: 10px
   background: #FAFAFA
   margin-bottom: 5px
-
+  .votes_up
+    color: #c0392b
+  .votes_up:hover
+    color: darken(#c0392b, 10%)
+  .votes_down
+    color: #ccc
+  .votes_down:hover
+    color: darken(#ccc, 10%)
+  // postbody
   .titolo
     font-size: 23pt
     font-family: 'Lato', sans-serif
@@ -22,20 +30,42 @@
     padding: 0 5px 15px 5px
     border-bottom: rgba(0,0,0,0.1) 2px solid
     margin-top: -7px
+  ul
+    width: 100%
+    display: flex
+  .tag
+    float: left
+    list-style: none
+    margin: 10px 5px
+  .tag a
+    text-decoration: none
+    cursor: pointer
+    margin-right: -2px
 
-    .votes_up
-      color: #c0392b
-    .votes_up:hover
-      color: darken(#c0392b, 10%)
-    .votes_down
-      color: #ccc
-    .votes_down:hover
-      color: darken(#ccc, 10%)
+  .tag span
+    background-color: $fcolor
+    color: #FFF
+    padding: 5px
+    +radius(2px)
 
+  .tag span:hover
+    background-color: darken($fcolor, 10%)
   .t_body
-    margin: 10px 0 0
+    margin: 0
     padding: 10px 10px 20px 10px
     border-bottom: rgba(0, 0, 0, 0.1) 2px solid
+
+    img
+      max-width: 100%
+      max-height: 300px
+      display: block
+      margin: 0 auto
+
+    table tr th, table tr td
+      border: #ddd 1px solid
+      background-color: #FFF
+      padding: 5px
+      +radius(2px)
 
     blockquote
       background-color: #E6E6E6
@@ -58,21 +88,98 @@
     color: #1e1e1e
     border-bottom: rgba(0, 0, 0, 0.1) 2px solid
 
+    a::before
+      @extend .beforeUser
+
     a
       text-decoration: none
       color: #1e1e1e
       font-weight: bold
 
-    .votes_p
-      margin: -1px
-      font-size: 11pt
-      +radius(5px)
-      display: block
+    .t_i_right
       float: right
-      background-color: #c0392b
-      padding: 3px
-      color: #FFF
-      cursor: default
+      margin: -1px
 
-    .votes_p:hover
-      background-color: darken(#c0392b, 10%)
+      span
+        padding: 3px
+        font-size: 11pt
+        +radius(5px)
+        display: block
+        float: left
+        color: #FFF
+        cursor: default
+        margin-left: 10px
+
+      .comments_p
+        background-color: #aaa
+
+      .comments_p:hover
+        background-color: darken(#aaa, 10%)
+
+      .votes_p
+        background-color: #c0392b
+
+      .votes_p:hover
+        background-color: darken(#c0392b, 10%)
+
+  // commenti
+  .comments
+    .cm_body
+      padding: 10px 0
+      border-bottom: rgba(0, 0, 0, 0.1) 2px solid
+      display: flex
+
+      .cm_b_left
+        width: 50px
+        float: left
+        height: auto
+
+        .cm_b_l_avatar
+          width: 50px
+          height: 50px
+          background-position: center
+          background-size: 100%
+          +radius(100%)
+
+        .cm_b_l_vote
+          font-size: 26pt
+          margin: 10px
+
+          span
+            font-size: 9pt
+            display: block
+            font-family: 'Lato'
+            text-align: center
+            font-weight: bold
+            color: #aaa
+
+      .cm_b_right
+        float: right
+        margin-left: 10px
+        width: 90%
+
+        .cm_b_r_info
+          font-family: 'Lato', sans-serif
+          font-size: 13pt
+          color: #1e1e1e
+
+          a::before
+            @extend .beforeUser
+
+          a
+            text-decoration: none
+            color: #1e1e1e
+            font-weight: bold
+
+        .cm_b_r_text
+          background-color: darken(#FFF, 5%)
+          padding: 10px
+          margin: 10px 0
+          width: 100%
+          +radius(4px)
+
+        pre
+          padding: 10px
+          +radius(4px)
+          +shadow(rgba(0,0,0,0.2) 0 0 2px)
+          background-color: #FFF
