@@ -33,12 +33,16 @@
 </div>
 
 <script>
-  var converter1 = Markdown.getSanitizingConverter();
-  Markdown.Extra.init(converter1, {extensions: "all"});
-  var editor1 = new Markdown.Editor(converter1);
-  editor1.hooks.chain("onPreviewRefresh", prettyPrint); // google code prettify
-  converter1.hooks.chain("preConversion", function (text) {
-    return text.replace(/\b(a\w*)/gi, "*$1*");
-  });
-  editor1.run();
+(function () {
+  var converter = new Markdown.Converter();
+
+  // "all" is the default
+  Markdown.Extra.init(converter, {highlighter: "hljs"});
+  var help = function () { alert("?"); }
+  var options = {
+    helpButton: { handler: help }
+  };
+  var editor = new Markdown.Editor(converter);
+  editor.run();
+})();
 </script>

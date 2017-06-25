@@ -61,12 +61,35 @@
 </section>
 <% if check_conn %>
 <section class="add_comments" id="add">
+  <div id="wmd-button-bar-c" style="display:none;"></div>
   <%= form_tag({controller: "post", action: "addComment", t: @post.id}, method: "post") do %>
-    <%= "<div class=\"errors\">#{Comment.commentsError(params[:e])}</div>".html_safe if params.has_key?"e" %>
-    <textarea name="blocktext" placeholder="Inserisci un commento" required></textarea>
+    <% begin %>
+      <% checkDataLast = time_ago_in_words(params[:e2]) %>
+    <% rescue %>
+      <% checkDataLast = nil %>
+    <% end %>
+    <% if params.has_key?"e" %>
+      <%= link_to "<div class=\"errors\">#{Comment.commentsError(params[:e])} #{checkDataLast}</div>".html_safe, {controller: "post", action: "topic", postID: @post.id, anchor: "add"}, style: "text-decoration: none"%>
+    <% end %>
+    <textarea name="blocktext" id="wmd-input-c" placeholder="Inserisci un commento" title="È possibile utilizzare Markdown" required></textarea>
+    <div id="wmd-preview-c" class="wmd-panel wmd-preview" style="width: 97%;"></div>
     <input type="text" name="tags" placeholder="Tags, separati da una virgola. (esempio,esempio2)" />
     <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
     <input type="submit" value="Invia" id="submit" />
   <% end %>
 </section>
+<script>
+(function () {
+  var converter = new Markdown.Converter();
+
+  // "all" is the default
+  Markdown.Extra.init(converter, {highlighter: "hljs"});
+  var help = function () { alert("?"); }
+  var options = {
+    helpButton: { handler: help }
+  };
+  var editor = new Markdown.Editor(converter, "-c", options);
+  editor.run();
+})();
+</script>
 <% end %>

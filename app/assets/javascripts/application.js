@@ -15,6 +15,14 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+  $("#wmd-input-c").keyup(function(){
+    if($("#wmd-input-c").val().length > 0) {
+      $(this).css("height", "150px");
+    } else {
+      $(this).css("height", "16px");
+    }
+  });
+
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
