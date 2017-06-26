@@ -20,6 +20,35 @@
     color: #ccc
   .votes_down:hover
     color: darken(#ccc, 10%)
+  .tsb
+    margin: 5px 0 !important
+  .t_segn_body, .tsb
+    position: absolute
+    width: 400px
+    height: 100px
+    margin: 15px 0 0 100px
+    background: #FFF
+    border: #CCC 1px solid
+    padding: 10px
+    display: none
+
+    form textarea
+      color: #333
+      padding: 10px
+      margin: 0
+      width: 375px
+      border-radius: 4px
+      font-family: monospace
+      font-size: 9pt
+      max-width: 375px
+      max-height: 50px
+      border: 1px solid rgb(204, 204, 204)
+      height: 50px
+
+    form input
+      float: right
+      margin: 4px
+      cursor: pointer
   // postbody
   .titolo
     font-size: 23pt
@@ -88,13 +117,16 @@
     color: #1e1e1e
     border-bottom: rgba(0, 0, 0, 0.1) 2px solid
 
-    a::before
+    .nicknameUser::before
       @extend .beforeUser
 
     a
       text-decoration: none
       color: #1e1e1e
       font-weight: bold
+      cursor: pointer
+    a:hover
+      text-decoration: underline
 
     .t_i_right
       float: right
@@ -170,6 +202,8 @@
             text-decoration: none
             color: #1e1e1e
             font-weight: bold
+        .cm_b_r_cmd a
+          cursor: pointer
 
   .cm_b_r_text, #wmd-preview-c
     background-color: darken(#FFF, 5%)
@@ -184,7 +218,12 @@
       padding: 5px
       +radius(2px)
 
-    pre
+    blockquote
+      background-image: url('/assets/quotes_blockquote.png')
+      background-size: 25px
+      background-position: right
+      background-repeat: no-repeat
+    pre, blockquote
       padding: 10px
       +radius(4px)
       +shadow(rgba(0,0,0,0.2) 0 0 2px)

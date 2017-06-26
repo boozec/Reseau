@@ -23,12 +23,27 @@
 </div>
 <div class="t_info">
   <% author_name = User.where(id: @post.author).take %>
-  <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
+  <%= link_to "#{author_name.nickname}", {controller: "pages", action: "index"}, class: "nicknameUser" %>
   <% I18n.locale = :it %>
-  <span title="<%= @post.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.updated_at) + ' fa' %></span>
+  <span title="<%= @post.created_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.created_at) + ' fa' %> &middot;</span>
+  <a class="t_segn" style="color: #f1c40f">segnala</a>
+  <div class="t_segn_body">
+    <%= form_tag({controller: "post", action: "report", t: @post.id}, method: "post") do %>
+      <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>
+      <input type="submit" value="Invia" />
+    <% end %>
+  </div>
+  <% if check_conn %>
+    <% if (userd 'id').to_i == @post.author %>
+      <span>&middot;</span>
+      <%= link_to "elimina".html_safe, {controller: "post", action: "delPost", id: @post.id}, style: "color:#c0392b" %>
+      <span>&middot;</span>
+      <%= link_to "modifica".html_safe, {controller: "post", action: "editPost", id: @post.id}, style: "color:#34495e" %>
+    <% end %>
+  <% end %>
   <div class="t_i_right">
     <span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: @post.id).count %></span>
-    <span class="comments_p"><i class="fa fa-comments"></i> <%= Comment.select(:id).where(post_id: @post.id).count %></span>
+    <span class="comments_p"><i class="fa fa-comments"></i> <%= Comment.select(:id).where(post_id: @post.id, active: 1).count %></span>
   </div>
 </div>
 

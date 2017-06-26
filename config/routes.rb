@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'lovec/(/:id)', to: 'post#addVoteComment'
 
   post '/commenta', to: 'post#addComment'
+  get 'delc/(/:id)', to: 'post#delComment'
+  get 'delp/(/:id)', to: 'post#delPost'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'pages#index'

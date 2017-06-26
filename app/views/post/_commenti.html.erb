@@ -54,6 +54,23 @@
         editor.run();
       })();
       </script>
+      <div class="cm_b_r_cmd">
+        <a onclick="report('<%= comment.id %>')">segnala</a>
+        <% if check_conn %>
+          <% if (userd 'id').to_i == comment.author_id %>
+            <span>&middot;</span>
+            <%= link_to "elimina".html_safe, {controller: "post", action: "delComment", id: comment.id} %>
+            <span>&middot;</span>
+            <%= link_to "modifica".html_safe, {controller: "post", action: "editComment", id: comment.id} %>
+          <% end %>
+        <% end %>
+      <div class="tsb tsb_<%= comment.id %>">
+        <%= form_tag({controller: "post", action: "report", c: comment.id}, method: "post") do %>
+          <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>
+          <input type="submit" value="Invia" />
+        <% end %>
+      </div>
+      </div>
 
     </div>
   </div>

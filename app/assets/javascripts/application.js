@@ -13,8 +13,14 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+function report(id) {
+  $('.tsb_'+id).toggle();
+}
 
 $(document).on('turbolinks:load', function() {
+  $('.t_segn').click(function(){
+    $('.t_segn_body').toggle();
+  });
   $("#wmd-input-c").keyup(function(){
     if($("#wmd-input-c").val().length > 0) {
       $(this).css("height", "150px");

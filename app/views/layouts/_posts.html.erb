@@ -3,7 +3,7 @@
   <article>
     <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" title="<%= Post.categoryInfo('name', post.category).capitalize %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
     <div class="c_comments img_cover">
-      <p><%= Comment.select(:id).where(post_id: post.id).count %></p>
+      <p><%= Comment.select(:id).where(post_id: post.id, active: 1).count %></p>
       <span>commenti</span>
     </div>
     <div class="info_p">
@@ -20,7 +20,7 @@
         </span>
         </li>
         <% I18n.locale = :it %>
-        <li><span title="<%= post.updated_at.strftime('%d/%m/%Y %H:%M') %>"><%= time_ago_in_words(post.updated_at) + ' fa' %></span></li>
+        <li><span title="<%= post.created_at.strftime('%d/%m/%Y %H:%M') %>"><%= time_ago_in_words(post.created_at) + ' fa' %></span></li>
         <li class="tag">
 					<%= link_to "<span>#{Post.categoryInfo('name', post.category)}</span>".html_safe, controller: "pages", action: "tags", w: Post.categoryInfo('name', post.category) %>
         </li>
