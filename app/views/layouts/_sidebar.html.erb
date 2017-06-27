@@ -19,13 +19,13 @@
   <div class="last_comments">
     <h1>Ultimi commenti</h1>
     <ul>
-      <% Comment.order(:updated_at).reverse_order.take(5).each do |comment| %>
+      <% Comment.joins("INNER JOIN posts ON posts.id = comments.post_id").where(posts: {active: 1}, active: 1).order(:updated_at).reverse_order.take(5).each do |comment| %>
       <li class="<%= cycle('', 'c2') %>">
         <div class="c_avatar" style="background-image: url('/<%= User.getAvatar(comment.author_id)%>')"></div>
         <div class="c_infos">
           <% post = Post.where(id: comment.post_id).take %>
           <% user = User.where(id: comment.author_id).take %>
-          <p><%= link_to "#{post.titolo}", controller: 'post', action: 'topic', postID: post.id %></p>
+          <p><%= link_to "#{post.titolo}", controller: 'post', action: 'topic', postID: post.id, anchor: "c_#{comment.id}" %></p>
           <% I18n.locale = :it %>
           <p><span><%= link_to "#{user.nickname}", {controller: 'pages', action: 'index'}, class: 'ch_createdBy' %>, <%= time_ago_in_words(comment.updated_at) + ' fa' %></span></p>
         </div>

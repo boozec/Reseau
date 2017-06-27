@@ -9,4 +9,13 @@ class Comment < ApplicationRecord
     else; 'Errore'
     end
   end
+
+  def self.editCommentError(v)
+    return case v
+    when 'Ok'; 'Commento modificato'
+    when '2'; 'Lunghezza commento non valida'
+    when '3'; 'Commento inesistente'
+    else; 'Errore'
+    end
+  end
 end

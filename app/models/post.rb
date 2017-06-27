@@ -19,4 +19,13 @@ class Post < ApplicationRecord
     end
   end
 
+  def self.editPostError(v)
+    return case v
+    when 'Ok'; 'Post modificato'
+    when '2'; 'Lunghezza post non valida'
+    when '3'; 'Post inesistente'
+    else; 'Errore'
+    end
+  end
+
 end

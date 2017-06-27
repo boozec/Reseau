@@ -83,33 +83,6 @@
     margin: 0
     padding: 10px 10px 20px 10px
     border-bottom: rgba(0, 0, 0, 0.1) 2px solid
-
-    img
-      max-width: 100%
-      max-height: 300px
-      display: block
-      margin: 0 auto
-
-    table tr th, table tr td
-      border: #ddd 1px solid
-      background-color: #FFF
-      padding: 5px
-      +radius(2px)
-
-    blockquote
-      background-color: #E6E6E6
-      padding: 10px
-      margin-left: 20px
-      +radius(4px)
-
-    pre
-      padding: 10px
-      +radius(4px)
-      +shadow(rgba(0,0,0,0.2) 0 0 2px)
-      background-color: #FFF
-
-    ul li
-      list-style-position: inside
   .t_info
     padding: 10px
     font-family: 'Lato', sans-serif
@@ -204,8 +177,12 @@
             font-weight: bold
         .cm_b_r_cmd a
           cursor: pointer
+          color: #1e1e1e
+          text-decoration: none
+        .cm_b_r_cmd a:hover
+          text-decoration: underline
 
-  .cm_b_r_text, #wmd-preview-c
+  .cm_b_r_text, #wmd-preview-c, .t_body
     background-color: darken(#FFF, 5%)
     padding: 10px
     margin: 10px 0
@@ -235,7 +212,22 @@
       background-color: #FFF
       padding: 1px !important
 
-  .add_comments
+    img
+      max-width: 100%
+      max-height: 300px
+      display: block
+      margin: 0 auto
+
+  .edit_post, .edit_comments
+    form
+      width: 100%
+      display: inline-block
+      textarea
+        height: 200px !important
+
+  .add_comments,
+  .edit_comments,
+  .edit_post
     .errors
       padding: 20px 0 10px
       color: red

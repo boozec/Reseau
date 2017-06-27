@@ -35,7 +35,20 @@
       <% end %>
       </ul>
       <div id="wmd-button-bar-<%= comment.id %>" style="display:none;"></div>
-      <textarea id="wmd-input-<%= comment.id %>" class="wmd-input" disabled style="display:none;"><%= sanitize comment.blocktext %></textarea>
+      <% if comment.author_id == (userd 'id').to_i %>
+      <div class="edit_comments" id="e_c_<%= comment.id %>" style="display:none">
+      <%= form_tag({controller: "post", action: "editComment", id: comment.id, t: @post.id}, method: :put) do %>
+        <textarea name="blocktext" id="wmd-input-<%= comment.id %>" class="wmd-input" required><%= sanitize comment.blocktext %></textarea>
+        <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
+        <input type="submit" value="Salva" id="submit" />
+      <% end %>
+      </div>
+      <% else %>
+      <textarea name="blocktext" id="wmd-input-<%= comment.id %>" class="wmd-input" disabled style="display:none"><%= sanitize comment.blocktext %></textarea>
+      <% end %>
+      <% if params['d'].to_i == comment.id %>
+        <%= link_to "#{Comment.editCommentError(params['errc'])}", {controller: "post", action: "topic", postID: @post.id, anchor: "c_#{comment.id}"}, style: "color: red;text-decoration: none" if params.has_key?'errc' %>
+      <% end %>
       <blockquote class="cm_b_r_text">
         <div id="wmd-preview-<%= comment.id %>" class="wmd-panel wmd-preview"></div>
       </blockquote>
@@ -61,11 +74,11 @@
             <span>&middot;</span>
             <%= link_to "elimina".html_safe, {controller: "post", action: "delComment", id: comment.id} %>
             <span>&middot;</span>
-            <%= link_to "modifica".html_safe, {controller: "post", action: "editComment", id: comment.id} %>
+            <a onclick="editComment('<%= comment.id %>')">modifica</a>
           <% end %>
         <% end %>
       <div class="tsb tsb_<%= comment.id %>">
-        <%= form_tag({controller: "post", action: "report", c: comment.id}, method: "post") do %>
+        <%= form_tag({controller: "pages", action: "report", c: comment.id}, method: "post") do %>
           <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>
           <input type="submit" value="Invia" />
         <% end %>

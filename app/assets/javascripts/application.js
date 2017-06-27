@@ -17,7 +17,15 @@ function report(id) {
   $('.tsb_'+id).toggle();
 }
 
+function editComment(id) {
+  $('#e_c_'+id).toggle();
+}
+
 $(document).on('turbolinks:load', function() {
+  $('.e_post').click(function(){
+    $('html,body').animate({ scrollTop: 0 }, 'slow');
+    $('.edit_post').slideToggle();
+  });
   $('.t_segn').click(function(){
     $('.t_segn_body').toggle();
   });

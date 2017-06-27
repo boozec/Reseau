@@ -72,7 +72,7 @@ module PostHelper
       if last_author_date == nil || (date.to_time.to_i - last_author_date['created_at'].to_time.to_i) > 300
         begin
           query_exe("INSERT INTO comments(id, author_id, author_ip, post_id, blocktext, active, created_at, updated_at)
-            VALUES (NULL,'#{idAuthor}','#{ip}','#{v["t"]}',\"#{v["blocktext"]}\",1,'#{date}','#{date}')")
+            VALUES (NULL,'#{idAuthor}','#{ip}','#{v["t"]}',#{v["blocktext"]},1,'#{date}','#{date}')")
 
           last = Comment.last
 
@@ -84,10 +84,8 @@ module PostHelper
               next
             end
           end
+          updateDatePost(v["t"])
           return 'Ok'
-
-          updateDatePost(idPost)
-
         rescue
           return 'Errore'
         end
@@ -99,6 +97,32 @@ module PostHelper
       end
     else
       return 'Post inesistente'
+    end
+  end
+
+  def editPost(v, idAuthor)
+    if Post.where(active: 1, id: v['id'], author: idAuthor).count > 0
+      begin
+        query_exe("UPDATE posts SET blocktext = #{v['blocktext']}, author_ip = '#{ip}' WHERE id = '#{v['id']}'")
+        return 'Ok'
+      rescue
+        return 4
+      end
+    else
+      return 3
+    end
+  end
+
+  def editComment(v, idAuthor)
+    if Comment.where(active: 1, id: v['id'], author_id: idAuthor, post_id: v['t']).count > 0
+      begin
+        query_exe("UPDATE comments SET blocktext = #{v['blocktext']}, author_ip = '#{ip}' WHERE id = '#{v['id']}'")
+        return 'Ok'
+      rescue
+        return 4
+      end
+    else
+      return 3
     end
   end
 end

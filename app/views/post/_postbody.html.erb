@@ -17,8 +17,19 @@
 <% end %>
 </ul>
 <div id="wmd-button-bar" style="display:none;"></div>
-<textarea id="wmd-input" class="wmd-input" disabled style="display:none;"><%= @post.blocktext %></textarea>
+<% if @post.author == (userd 'id').to_i %>
+<div class="edit_post" style="display:none">
+<%= form_tag({controller: "post", action: "editPost", id: @post.id}, method: "post") do %>
+  <textarea name="blocktext" id="wmd-input" class="wmd-input" required><%= sanitize @post.blocktext %></textarea>
+  <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
+  <input type="submit" value="Salva" id="submit" />
+<% end %>
+</div>
+<% else %>
+<textarea name="blocktext" id="wmd-input" class="wmd-input" disabled style="display: none"><%= sanitize @post.blocktext %></textarea>
+<% end %>
 <div class="t_body">
+  <%= link_to "#{Post.editPostError(params['err'])}", {controller: "post", action: "topic", postID: @post.id}, style: "color: red;text-decoration: none" if params.has_key?'err'%>
   <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
 </div>
 <div class="t_info">
@@ -28,7 +39,7 @@
   <span title="<%= @post.created_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.created_at) + ' fa' %> &middot;</span>
   <a class="t_segn" style="color: #f1c40f">segnala</a>
   <div class="t_segn_body">
-    <%= form_tag({controller: "post", action: "report", t: @post.id}, method: "post") do %>
+    <%= form_tag({controller: "pages", action: "report", t: @post.id}, method: "post") do %>
       <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>
       <input type="submit" value="Invia" />
     <% end %>
@@ -38,7 +49,7 @@
       <span>&middot;</span>
       <%= link_to "elimina".html_safe, {controller: "post", action: "delPost", id: @post.id}, style: "color:#c0392b" %>
       <span>&middot;</span>
-      <%= link_to "modifica".html_safe, {controller: "post", action: "editPost", id: @post.id}, style: "color:#34495e" %>
+      <a style="color:#34495e" class="e_post">modifica</a>
     <% end %>
   <% end %>
   <div class="t_i_right">

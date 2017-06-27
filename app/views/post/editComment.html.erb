@@ -2,7 +2,7 @@
 <% if params.has_key?("blocktext") %>
 <% params[:blocktext] = ActiveRecord::Base.connection.quote(strip_tags(params[:blocktext].gsub("<","&lt;").gsub(">","&gt;").gsub("\"","&quot;"))) %>
 <% if params[:blocktext].length > 2%>
-  <% c = commenta(params, "#{userd 'id'}") %>
+  <% c = editComment(params, "#{userd 'id'}") %>
   <% if c == 'OK' %>
     <% @errors = 1 %>
   <% else %>
@@ -15,5 +15,5 @@
   <% @errors = 3 %>
 <% end %>
 <script>
-location.href = "/t/<%= params[:t] %>?e=<%= @errors %>&e2=<%= @extraErrors %>#add";
+location.href = "/t/<%= params[:t] %>?errc=<%= @errors %>&d=<%= params[:id] %>#c_<%= params[:id] %>";
 </script>
