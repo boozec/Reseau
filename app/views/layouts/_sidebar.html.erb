@@ -19,7 +19,7 @@
   <div class="last_comments">
     <h1>Ultimi commenti</h1>
     <ul>
-      <% Comment.joins("INNER JOIN posts ON posts.id = comments.post_id").where(posts: {active: 1}, active: 1).order(:updated_at).reverse_order.take(5).each do |comment| %>
+      <% Comment.joins("INNER JOIN posts ON posts.id = comments.post_id").where(posts: {active: 1}, active: 1).order(:id).reverse_order.take(5).each do |comment| %>
       <li class="<%= cycle('', 'c2') %>">
         <div class="c_avatar" style="background-image: url('/<%= User.getAvatar(comment.author_id)%>')"></div>
         <div class="c_infos">

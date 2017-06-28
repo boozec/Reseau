@@ -1,5 +1,5 @@
 <section class="comments">
-<% Comment.order(:updated_at).where(active: 1, post_id: @post.id).take(100).each do |comment| %>
+<% Comment.order(:id).where(active: 1, post_id: @post.id).take(100).each do |comment| %>
   <div id="c_<%= comment.id %>" class="cm_body">
     <div class="cm_b_left">
       <div class="cm_b_l_avatar" style="background-image:url('/<%= User.getAvatar(comment.author_id)%>')"></div>
@@ -24,7 +24,7 @@
         <% author_name = User.where(id: comment.author_id).take %>
         <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
         <% I18n.locale = :it %>
-        <span title="<%= comment.updated_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(comment.updated_at) + ' fa' %> &middot;</span>
+        <span title="<%= comment.created_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(comment.created_at) + ' fa' %> &middot;</span>
         <span title="Commenti totali dell'utente"><%= Comment.select(:id).where(author_id: comment.author_id, active: 1).count %> commenti</span>
       </div>
       <ul>
@@ -77,6 +77,7 @@
             <a onclick="editComment('<%= comment.id %>')">modifica</a>
           <% end %>
         <% end %>
+        <%= "<span style=\"float: right;\" title=\"Questo commento è stato modificato l'ultima volta: #{comment.updated_at.strftime('%d/%m/%Y %H:%M')}\">modificato</span>".html_safe if comment.created_at != comment.updated_at %>
       <div class="tsb tsb_<%= comment.id %>">
         <%= form_tag({controller: "pages", action: "report", c: comment.id}, method: "post") do %>
           <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>

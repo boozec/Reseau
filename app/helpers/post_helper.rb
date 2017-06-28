@@ -103,7 +103,7 @@ module PostHelper
   def editPost(v, idAuthor)
     if Post.where(active: 1, id: v['id'], author: idAuthor).count > 0
       begin
-        query_exe("UPDATE posts SET blocktext = #{v['blocktext']}, author_ip = '#{ip}' WHERE id = '#{v['id']}'")
+        query_exe("UPDATE posts SET blocktext = #{v['blocktext']}, author_ip = '#{ip}', updated_at = '#{date}' WHERE id = '#{v['id']}'")
         return 'Ok'
       rescue
         return 4
@@ -116,7 +116,7 @@ module PostHelper
   def editComment(v, idAuthor)
     if Comment.where(active: 1, id: v['id'], author_id: idAuthor, post_id: v['t']).count > 0
       begin
-        query_exe("UPDATE comments SET blocktext = #{v['blocktext']}, author_ip = '#{ip}' WHERE id = '#{v['id']}'")
+        query_exe("UPDATE comments SET blocktext = #{v['blocktext']}, author_ip = '#{ip}', updated_at = '#{date}' WHERE id = '#{v['id']}'")
         return 'Ok'
       rescue
         return 4

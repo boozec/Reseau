@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
+  match ':controller(/:action(/:id))', :via => :get
+
   get '/about', to: 'pages#about'
-  post '/signup', to: 'users#signup'
-  get '/signup', to: 'users#signup'
-  post '/signin', to: 'users#signin'
-  get '/signin', to: 'users#signin'
+  match '/signin' => 'users#signin', via: [:get, :put]
+  match '/signup' => 'users#signup', via: [:get, :post]
 
   get '/logout', to: 'users#logout'
 
