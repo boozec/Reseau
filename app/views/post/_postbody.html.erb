@@ -34,7 +34,7 @@
 </div>
 <div class="t_info">
   <% author_name = User.where(id: @post.author).take %>
-  <%= link_to "#{author_name.nickname}", {controller: "pages", action: "index"}, class: "nicknameUser" %>
+  <%= link_to "#{author_name.username}", {controller: "pages", action: "index"}, class: "usernameUser" %>
   <% I18n.locale = :it %>
   <span title="<%= @post.created_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.created_at) + ' fa' %> &middot;</span>
   <a class="t_segn" style="color: #f1c40f">segnala</a>

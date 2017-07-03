@@ -4,8 +4,8 @@
     <%= @errors if @errors != '' %>
   </div>
   <input type="hidden" name="r" value="1" />
-  <input id="user_email" pattern=".{4,99}" placeholder="Email" type="email" name="email" required />
-  <input id="user_nickname" pattern=".{3,15}" title="Minimo 3 e massimo 15 caratteri" placeholder="Nickname" type="text" name="nickname" required />
+  <input id="user_email" placeholder="Email (facoltativo)" type="email" name="email" />
+  <input id="user_username" pattern=".{3,15}" title="Minimo 3 e massimo 15 caratteri" placeholder="Username" type="text" name="username" required />
   <input id="user_password" pattern=".{8,42}" title="Minimo 8 e massimo 42 caratteri" placeholder="Password" type="password" name="password" required />
   <a class="switchLogin">Hai già un account?</a>
   <input type="submit" name="commit" value="Registrati" id="submit" />

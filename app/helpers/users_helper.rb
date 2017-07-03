@@ -6,11 +6,11 @@ module UsersHelper
     startcode = (0...50).map { o[rand(o.length)] }.join
     pass = Digest::MD5.hexdigest(v["password"])
 
-    unless User.select(:id).where(:nickname => v["nickname"]).count > 0
+    unless User.select(:id).where(:username => v["username"]).count > 0
       unless User.select(:id).where(:email => v["email"]).count > 0
         begin
-          query_exe("INSERT INTO users(id, nickname, password, email, rank, reg_ip, last_ip, startcode, created_at, updated_at)
-          VALUES (NULL,'#{v["nickname"]}','#{pass}','#{v["email"]}','0','#{ip}','#{ip}','#{startcode}','#{date}','#{date}')")
+          query_exe("INSERT INTO users(id, username, password, email, rank, reg_ip, last_ip, startcode, created_at, updated_at)
+          VALUES (NULL,'#{v["username"]}','#{pass}','#{v["email"]}','0','#{ip}','#{ip}','#{startcode}','#{date}','#{date}')")
           newID = query_exe("SELECT id FROM users ORDER BY id DESC LIMIT 1")
           newID.each do |r|
             newID = r[0]
@@ -24,7 +24,7 @@ module UsersHelper
         return 'Email già in uso'
       end
     else
-      return 'Nickname già in uso'
+      return 'Username già in uso'
     end
   end
 
@@ -32,12 +32,12 @@ module UsersHelper
   def signin(v)
     pass = Digest::MD5.hexdigest(v["password"])
 
-    unless User.select(:id).where(:nickname => v["nickname"]).count == 0
-      unless User.select(:id).where(:nickname => v["nickname"], :password => pass).count == 0
+    unless User.select(:id).where(:username => v["username"]).count == 0
+      unless User.select(:id).where(:username => v["username"], :password => pass).count == 0
         unless User.select(:id).where(:rank => -1).count == 1
           begin
-            query_exe("UPDATE users SET last_ip = '#{ip}', updated_at = '#{date}' WHERE nickname = '#{v["nickname"]}'")
-            userID = query_exe("SELECT id FROM users WHERE nickname = '#{v["nickname"]}'")
+            query_exe("UPDATE users SET last_ip = '#{ip}', updated_at = '#{date}' WHERE username = '#{v["username"]}'")
+            userID = query_exe("SELECT id FROM users WHERE username = '#{v["username"]}'")
             userID.each do |r|
               userID = r[0]
             end

@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20170625094445) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "nickname", limit: 15, null: false
+    t.string "username", limit: 15, null: false
     t.string "password", limit: 60, null: false
-    t.string "email", limit: 30, null: false
+    t.string "email", limit: 30
     t.integer "rank"
     t.string "reg_ip", limit: 30, null: false
     t.string "last_ip", limit: 30, null: false

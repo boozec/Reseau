@@ -22,7 +22,7 @@
     <div class="cm_b_right">
       <div class="cm_b_r_info">
         <% author_name = User.where(id: comment.author_id).take %>
-        <%= link_to "#{author_name.nickname}", controller: "pages", action: "index" %>
+        <%= link_to "#{author_name.username}", controller: "pages", action: "index" %>
         <% I18n.locale = :it %>
         <span title="<%= comment.created_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(comment.created_at) + ' fa' %> &middot;</span>
         <span title="Commenti totali dell'utente"><%= Comment.select(:id).where(author_id: comment.author_id, active: 1).count %> commenti</span>
@@ -77,7 +77,7 @@
             <a onclick="editComment('<%= comment.id %>')">modifica</a>
           <% end %>
         <% end %>
-        <%= "<span style=\"float: right;\" title=\"Questo commento è stato modificato l'ultima volta: #{comment.updated_at.strftime('%d/%m/%Y %H:%M')}\">modificato</span>".html_safe if comment.created_at != comment.updated_at %>
+        <%= "<span style=\"float: right;\" title=\"Questo commento è stato modificato l'ultima volta: #{comment.updated_at.strftime('%d/%m/%Y %H:%M:%S')}\">modificato</span>".html_safe if comment.created_at != comment.updated_at %>
       <div class="tsb tsb_<%= comment.id %>">
         <%= form_tag({controller: "pages", action: "report", c: comment.id}, method: "post") do %>
           <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>
@@ -104,7 +104,7 @@
     <% end %>
     <textarea name="blocktext" id="wmd-input-c" placeholder="Inserisci un commento" title="È possibile utilizzare Markdown" required></textarea>
     <div id="wmd-preview-c" class="wmd-panel wmd-preview" style="width: 97%;"></div>
-    <input type="text" name="tags" placeholder="Tags, separati da una virgola. (esempio,esempio2)" />
+    <input type="text" name="tags" placeholder="Tags, separati da una virgola (facolativo)" />
     <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
     <input type="submit" value="Invia" id="submit" />
   <% end %>

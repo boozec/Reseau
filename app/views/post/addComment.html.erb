@@ -1,6 +1,6 @@
 <% redIfConn unless check_conn %>
 <% if params.has_key?("blocktext") %>
-<% params[:blocktext] = ActiveRecord::Base.connection.quote(strip_tags(params[:blocktext].gsub("<","&lt;").gsub(">","&gt;").gsub("\"","&quot;"))) %>
+<% params[:blocktext] = query_quote(strip_tags(params[:blocktext].gsub("<","&lt;").gsub(">","&gt;").gsub("\"","&quot;"))) %>
 <% if params[:blocktext].length > 2%>
   <% c = commenta(params, "#{userd 'id'}") %>
   <% if c == 'OK' %>

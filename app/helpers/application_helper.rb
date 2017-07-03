@@ -17,6 +17,11 @@ module ApplicationHelper
     return ActiveRecord::Base.connection.execute(sql)
   end
 
+  #funzione che converte una query SQL con le virgolete
+  def query_quote(sql)
+    return ActiveRecord::Base.connection.quote(sql)
+  end
+
   # funzione che restituisce il valore di un parametro dell'utente
   # es: " userd 'id' " -> 1
   def userd(param)
