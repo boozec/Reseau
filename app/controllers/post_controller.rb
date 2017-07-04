@@ -24,4 +24,8 @@ class PostController < ApplicationController
       @page_title = 'Aggiungi Love a commento'
     end
   end
+
+  def new
+    @page_title = 'Nuovo post'
+  end
 end

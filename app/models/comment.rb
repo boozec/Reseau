@@ -5,6 +5,8 @@ class Comment < ApplicationRecord
     when '2'; 'Lunghezza commento non valida'
     when '3'; 'Post inesistente'
     when '4'; 'Cos\'è questa fretta? Sembra che tu stia commentando troppo velocemente. Devi avere un\'intervallo di 5 minuti. L\'ultimo tuo commente risale a'
+    when '5'; 'Puoi aggiungere massimo 5 tags'
+    when '6'; 'Un tag può essere lungo max 10 caratteri'
     when 'Ok'; 'Commento inserito'
     else; 'Errore'
     end
@@ -15,6 +17,7 @@ class Comment < ApplicationRecord
     when 'Ok'; 'Commento modificato'
     when '2'; 'Lunghezza commento non valida'
     when '3'; 'Commento inesistente'
+
     else; 'Errore'
     end
   end

@@ -7,6 +7,10 @@ class Post < ApplicationRecord
                   [5, 'off topic', 'coffee', 'd35400'],
               ]
 
+  def self.numCategorie
+    return $categorie.length
+  end
+
   def self.categoryInfo(what, v)
     for i, j, k, z in $categorie do
       if v == i then
@@ -24,6 +28,8 @@ class Post < ApplicationRecord
     when 'Ok'; 'Post modificato'
     when '2'; 'Lunghezza post non valida'
     when '3'; 'Post inesistente'
+    when '5'; 'Puoi aggiungere massimo 5 tags'
+    when '6'; 'Un tag può essere lungo max 10 caratteri'
     else; 'Errore'
     end
   end

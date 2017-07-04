@@ -186,7 +186,7 @@
     background-color: darken(#FFF, 5%)
     padding: 10px
     margin: 10px 0
-    width: 100%
+    width: 98%
     +radius(4px)
 
     table tr th, table tr td
@@ -218,7 +218,7 @@
       display: block
       margin: 0 auto
 
-  .edit_post, .edit_comments
+  .edit_post, .new_post, .edit_comments
     form
       width: 100%
       display: inline-block
@@ -227,11 +227,12 @@
 
   .add_comments,
   .edit_comments,
-  .edit_post
+  .edit_post,
+  .new_post
     .errors
       padding: 20px 0 10px
       color: red
-    form textarea, form input
+    form textarea, form input, form select
       background-color: #FFF
       color: #1e1e1e
       padding: 10px
@@ -246,6 +247,11 @@
       outline-color: $fcolor
       +transition(.2s)
       border: #CCC 1px solid
+
+    form select
+      width: 48% !important
+      height: 40px !important
+      cursor: pointer
 
     form #submit
       height: 35px
@@ -266,10 +272,11 @@
     form #submit:hover
       background-color: darken($fcolor, 10%)
 
-    #wmd-preview-c::before
-      content: 'Anteprima'
-      display: block
-      font-family: "Lato", sans-serif
-      font-size: 13pt
-      font-weight: bold
-      color: darken(#FFF, 30%)
+  #wmd-preview-post::before,
+  #wmd-preview-c::before
+    content: 'Anteprima'
+    display: block
+    font-family: "Lato", sans-serif
+    font-size: 13pt
+    font-weight: bold
+    color: darken(#FFF, 30%)

@@ -1,7 +1,6 @@
 <% redIfConn if check_conn %>
 <% if params.has_key?("username") && params.has_key?("password") %>
-<% params[:username] = strip_tags(params[:username].gsub(/\s+/, "")) %>
-  <% log = signin(params) %>
+<% params[:username] = strip_tags(params[:username].gsub(/\s+/, "")) %>  <% log = signin(params) %>
   <% if log == 'OK' %>
     <% @errors = "Bentornato!" %>
   <% else %>
