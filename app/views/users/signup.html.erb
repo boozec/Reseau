@@ -1,0 +1,28 @@
+<% redIfConn if check_conn %>
+<% if params.has_key?("username") && params.has_key?("email") && params.has_key?("password") %>
+<% params[:email] = strip_tags(params[:email].gsub(/\s+/, "")) %>
+<% params[:username] = strip_tags(params[:username].gsub(/\s+/, "")) %>
+  <% if params[:username].length > 2 && params[:username].length < 16 %>
+    <% if params[:password].length > 7 && params[:password].length < 43 %>
+      <% res = signup(params) %>
+      <% if res == 'OK' %>
+        <% @errors = "Benvenuto!" %>
+      <% else %>
+        <% @errors = res %>
+      <% end %>
+    <% else %>
+      <% @errors = "La password deve avere minimo 8 e massimo 42 caratteri" %>
+    <% end %>
+  <% else %>
+    <% @errors = "Il username deve avere minimo 3 e massimo 15 caratteri" %>
+  <% end %>
+<% else %>
+  <% @errors = "Riempi tutti i campi" %>
+<% end %>
+
+<%= render "layouts/header" %>
+<section class="body_page">
+  <%= render "layouts/posts" %>
+  <%= render "layouts/sidebar" %>
+</section>
+<%= render "layouts/footer" %>

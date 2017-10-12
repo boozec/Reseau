@@ -1,0 +1,37 @@
+<div class="posts">
+<% Post.order(:updated_at).reverse_order.where(active: 1).take(33).each do |post| %>
+  <article>
+    <div class="img_cover fa fa-<%= Post.categoryInfo('fa', post.category) %>" title="<%= Post.categoryInfo('name', post.category).capitalize %>" style="border-color: #<%= Post.categoryInfo('color', post.category) %>"></div>
+    <div class="c_comments img_cover">
+      <p><%= Comment.select(:id).where(post_id: post.id, active: 1).count %></p>
+      <span>commenti</span>
+    </div>
+    <div class="info_p">
+      <h1 class="title_p">
+        <%= link_to "#{post.titolo}", controller: "post", action: "topic", postID: post.id %>
+				<span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: post.id).count %></span>
+			</h1>
+      <div class="dett_p">
+      <ul>
+        <li>
+        <span>
+          <% author_name = User.where(id: post.author).take %>
+          <%= link_to "#{author_name.username}", {controller: "pages", action: "index"}, class: 'ch_createdBy' %>
+        </span>
+        </li>
+        <% I18n.locale = :it %>
+        <li><span title="<%= post.created_at.strftime('%d/%m/%Y %H:%M') %>"><%= time_ago_in_words(post.created_at) + ' fa' %></span></li>
+        <li class="tag">
+					<%= link_to "<span>#{Post.categoryInfo('name', post.category)}</span>".html_safe, controller: "pages", action: "tags", w: Post.categoryInfo('name', post.category) %>
+        </li>
+        <% Tag.where(post: 1, postID: post.id).take(7).each do |tag| %>
+        <li class="tag">
+          <%= link_to "<span>#{tag.word}</span>".html_safe, controller: "pages", action: "tags", w: tag.word %>
+        </li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  </article>
+  <% end %>
+</div>

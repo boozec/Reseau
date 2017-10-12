@@ -1,0 +1,36 @@
+<div class="sidebar">
+  <%= "<div class=\"s_register\">#{link_to "Registrati", controller: 'users', action: 'signup'}</div>".html_safe unless check_conn %>
+  <div class="last_chall">
+    <h1>Ultime sfide</h1>
+    <ul>
+      <% Post.order(:updated_at).where(category: 3).reverse_order.take(5).each do |post| %>
+      <li class="<%= cycle('', 'c2') %>">
+        <div class="ch_title"><%= link_to "#{post.titolo}", controller: "post", action: "topic", postID: post.id %></div>
+        <div class="ch_infos">
+          <%= link_to "Partecipa", {controller: "post", action: "topic", postID: post.id}, class: 'ch_button' %>
+          <% author_name = User.where(id: post.author).take %>
+          <p>creata da <%= link_to "#{author_name.username}", {controller: 'pages', action: 'index'}, class: 'ch_createdBy' %></p>
+          <p>commenti <a><%= Comment.where(id: post.id, active: 1).count %></a></p>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="last_comments">
+    <h1>Ultimi commenti</h1>
+    <ul>
+      <% Comment.joins("INNER JOIN posts ON posts.id = comments.post_id").where(posts: {active: 1}, active: 1).order(:id).reverse_order.take(5).each do |comment| %>
+      <li class="<%= cycle('', 'c2') %>">
+        <div class="c_avatar" style="background-image: url('/<%= User.getAvatar(comment.author_id)%>')"></div>
+        <div class="c_infos">
+          <% post = Post.where(id: comment.post_id).take %>
+          <% user = User.where(id: comment.author_id).take %>
+          <p><%= link_to "#{post.titolo}", controller: 'post', action: 'topic', postID: post.id, anchor: "c_#{comment.id}" %></p>
+          <% I18n.locale = :it %>
+          <p><span><%= link_to "#{user.username}", {controller: 'pages', action: 'index'}, class: 'ch_createdBy' %>, <%= time_ago_in_words(comment.updated_at) + ' fa' %></span></p>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

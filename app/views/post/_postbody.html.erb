@@ -1,0 +1,74 @@
+<% if Love.select(:id).where(post: 1, postID: @post.id, author_id: "#{userd 'id'}").count > 0 %>
+  <% direction = 'down' %>
+  <% titleDirection = 'Abbassa numero Loves' %>
+<% else %>
+  <% direction = 'up' %>
+  <% titleDirection = 'Aumenta numero Loves' %>
+<% end %>
+<h1 class="titolo"><%= @post.titolo %> <%= link_to "<i class=\"fa fa-chevron-circle-#{direction}\"></i>".html_safe, {controller: "post", action: "addVote", id: @post.id}, class: "votes_#{direction}", title: titleDirection if check_conn%></h1>
+<ul>
+<li class="tag">
+  <%= link_to "<span>#{Post.categoryInfo('name', @post.category)}</span>".html_safe, controller: "pages", action: "tags", w: Post.categoryInfo('name', @post.category) %>
+</li>
+<% Tag.where(post: 1, postID: @post.id).take(7).each do |tag| %>
+<li class="tag">
+  <%= link_to "<span>#{tag.word}</span>".html_safe, controller: "pages", action: "tags", w: tag.word %>
+</li>
+<% end %>
+</ul>
+<div id="wmd-button-bar" style="display:none;"></div>
+<% if @post.author == (userd 'id').to_i %>
+<div class="edit_post" style="display:none">
+<%= form_tag({controller: "post", action: "editPost", id: @post.id}, method: "post") do %>
+  <textarea name="blocktext" id="wmd-input" class="wmd-input" required><%= sanitize @post.blocktext %></textarea>
+  <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
+  <input type="submit" value="Salva" id="submit" />
+<% end %>
+</div>
+<% else %>
+<textarea name="blocktext" id="wmd-input" class="wmd-input" disabled style="display: none"><%= sanitize @post.blocktext %></textarea>
+<% end %>
+<div class="t_body">
+  <%= link_to "#{Post.editPostError(params['err'])}", {controller: "post", action: "topic", postID: @post.id}, style: "color: red;text-decoration: none" if params.has_key?'err'%>
+  <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+</div>
+<div class="t_info">
+  <% author_name = User.where(id: @post.author).take %>
+  <%= link_to "#{author_name.username}", {controller: "pages", action: "index"}, class: "usernameUser" %>
+  <% I18n.locale = :it %>
+  <span title="<%= @post.created_at.strftime('%d/%m/%Y %H:%M') %>">&middot; <%= time_ago_in_words(@post.created_at) + ' fa' %> &middot;</span>
+  <a class="t_segn" style="color: #f1c40f">segnala</a>
+  <div class="t_segn_body">
+    <%= form_tag({controller: "pages", action: "report", t: @post.id}, method: "post") do %>
+      <textarea name="report_info" placeholder="Cos'è che non va?"></textarea>
+      <input type="submit" value="Invia" />
+    <% end %>
+  </div>
+  <% if check_conn %>
+    <% if (userd 'id').to_i == @post.author %>
+      <span>&middot;</span>
+      <%= link_to "elimina".html_safe, {controller: "post", action: "delPost", id: @post.id}, style: "color:#c0392b" %>
+      <span>&middot;</span>
+      <a style="color:#34495e" class="e_post">modifica</a>
+    <% end %>
+  <% end %>
+  <div class="t_i_right">
+    <span class="votes_p"><i class="fa fa-heart"></i> <%= Love.select(:id).where(post: 1, postID: @post.id).count %></span>
+    <span class="comments_p"><i class="fa fa-comments"></i> <%= Comment.select(:id).where(post_id: @post.id, active: 1).count %></span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var converter = new Markdown.Converter();
+
+  // "all" is the default
+  Markdown.Extra.init(converter, {highlighter: "hljs"});
+  var help = function () { alert("?"); }
+  var options = {
+    helpButton: { handler: help }
+  };
+  var editor = new Markdown.Editor(converter);
+  editor.run();
+})();
+</script>

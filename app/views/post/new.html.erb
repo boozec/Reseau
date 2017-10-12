@@ -1,0 +1,32 @@
+<% redIfConn unless check_conn %>
+<% if params.has_key?("blocktext") && params.has_key?("blocktext") %>
+  <% params[:blocktext] = ActiveRecord::Base.connection.quote(strip_tags(params[:blocktext].gsub("<","&lt;").gsub(">","&gt;").gsub("\"","&quot;"))) %>
+  <% params[:titolo] = ActiveRecord::Base.connection.quote(strip_tags(params[:titolo].gsub("<","&lt;").gsub(">","&gt;").gsub("\"","&quot;"))) %>
+  <% if params[:blocktext].length > 2 %>
+    <% if params[:titolo].length > 2 && params[:titolo].length < 51%>
+      <% nP = newPost(params, "#{userd 'id'}") %>
+      <% if nP == 'OK' %>
+        <% last = Post.last %>
+        <% @errors = "Vai <a href=\"t/#{last['id']}\">qui</a> per visualizzare il post".html_safe %>
+      <% else %>
+        <% @errors = nP %>
+      <% end %>
+    <% else %>
+      <% @errors = "Il titolo deve avere minimo 3 e massimo 50 caratteri" %>
+    <% end %>
+  <% else %>
+    <% @errors = "La lunghezza del post è troppo corta" %>
+  <% end %>
+<% else %>
+  <% @errors = "Devi scrivere un post e selezionare una categoria" %>
+<% end %>
+
+<%= render "layouts/header" %>
+<section class="body_page">
+  <div class="topics">
+    <h1 class="titolo">Nuovo post</h1>
+    <%= render "newPost" %>
+  </div>
+  <%= render "layouts/sidebar" %>
+</section>
+<%= render "layouts/footer" %>

@@ -1,0 +1,6 @@
+<% redIfConn unless check_conn %>
+<% delPost(params[:id], "#{userd 'id'}") if params.has_key?("id")%>
+
+<script>
+  location.href = "/";
+</script>

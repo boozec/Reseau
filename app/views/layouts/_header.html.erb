@@ -1,0 +1,72 @@
+<header>
+	<% unless check_conn %>
+	<section class="log" style="<%= "display:block;" if params.has_key?("r") || params.has_key?("l") || request.original_fullpath == "/signup" || request.original_fullpath == "/signin" %>">
+		<a class="_closex" <%= 'href="/"'.html_safe if request.original_fullpath == "/signin" ||  request.original_fullpath == "/signup"%>>
+			<%= image_tag("x_close.png", :alt => "X", :class => "x_close") %>
+		</a>
+		<div class="sign signup" style="<%= "display:none;" if request.original_fullpath == "/signin"%>">
+			<%= render "users/formUp" %>
+		</div>
+		<div class="sign signin" style="<%= "display:block;" if request.original_fullpath == "/signin"%>">
+			<%= render "users/formIn" %>
+		</div>
+	</section>
+	<% end %>
+	<section class="head">
+		<h1 id="logo">
+			<a href="/">
+				<%= image_tag("logo_reseau.svg", :alt => "logo") %>
+			</a>
+		</h1>
+		<nav>
+			<span class="expand_menu">
+				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+			</span>
+			<ul class="menu">
+				<li>
+					<%= link_to "Categorie", :controller => 'pages', :action => 'index' %>
+				</li>
+				<li>
+					<%= link_to "Codice", :controller => 'pages', :action => 'index' %>
+				</li>
+				<li>
+					<%= link_to "Utenti", :controller => 'pages', :action => 'index' %>
+				</li>
+			</ul>
+			<div class="r">
+			<% unless check_conn %>
+				<%= "<a class=\"butt_log\">Entra</a>".html_safe %>
+			<% else %>
+				<span class="user_ex_menu">
+					<div class="user_image" style="background-image:url('/<%= User.getAvatar(userd 'id')%>')"></div>
+				</span>
+				<ul class="menu_user">
+					<li>
+						<%= link_to "Nuovo post", :controller => 'post', :action => 'new' %>
+					</li>
+					<li>
+						<%= link_to "Nuovo codice", :controller => 'pages', :action => 'index' %>
+					</li>
+					<hr>
+					<li>
+						<%= link_to "Profilo", :controller => 'pages', :action => 'index' %>
+					</li>
+					<li>
+						<%= link_to "Impostazioni", :controller => 'pages', :action => 'index' %>
+					</li>
+					<li>
+						<%= link_to 'Logout', :controller => 'users', :action => 'logout' %>
+					</li>
+				</ul>
+			<% end %>
+			<%= form_tag({controller: "pages", action: "about"}, method: "get") do %>
+  			<div class="input">
+					<input type="text" name="q" placeholder="Cerca" />
+				</div>
+				<span class="sq"><i class="fa fa-search" aria-hidden="true"></i></span>
+			<% end %>
+			</div>
+		</nav>
+	</section>
+
+</header>

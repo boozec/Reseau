@@ -1,0 +1,36 @@
+<div class="new_post">
+  <%= @errors if @errors != '' %>
+<%= form_tag({controller: "post", action: "new"}, method: "post") do %>
+  <div>
+  <input type="text" pattern=".{3,50}" title="Minimo 3 e massimo 50 caratteri" name="titolo" placeholder="Titolo" required />
+  <select name="category" required>
+    <option value="-1" selected disabled>Categoria</option>
+    <hr>
+    <% for i in 1..Post.numCategorie %>
+      <%= "<option value=\"#{i}\">#{Post.categoryInfo('name', i)}</option>".html_safe %>
+    <% end %>
+  </select>
+  <input type="text" style="width: 49%" name="tags" placeholder="Tags, separati da una virgola (facolativo)" />
+  </div>
+  <textarea name="blocktext" id="wmd-input-post" class="wmd-input" required placeholder="Scrivi il post"></textarea>
+  <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
+  <input type="submit" value="Salva" id="submit" />
+<% end %>
+<div class="t_body">
+  <div id="wmd-preview-post" class="wmd-panel wmd-preview"></div>
+</div>
+<script>
+(function () {
+  var converter = new Markdown.Converter();
+
+  // "all" is the default
+  Markdown.Extra.init(converter, {highlighter: "hljs"});
+  var help = function () { alert("?"); }
+  var options = {
+    helpButton: { handler: help }
+  };
+  var editor = new Markdown.Editor(converter, "-post", options);
+  editor.run();
+})();
+</script>
+</div>

@@ -1,0 +1,19 @@
+<% redIfConn unless check_conn %>
+<% if params.has_key?("blocktext") %>
+<% params[:blocktext] = query_quote(strip_tags(params[:blocktext].gsub("<","&lt;").gsub(">","&gt;").gsub("\"","&quot;"))) %>
+<% if params[:blocktext].length > 2%>
+  <% c = commenta(params, "#{userd 'id'}") %>
+  <% if c == 'OK' %>
+    <% @errors = 1 %>
+  <% else %>
+    <% @errors = c %>
+  <% end %>
+<% else %>
+  <% @errors = 2 %>
+<% end %>
+<% else %>
+  <% @errors = 3 %>
+<% end %>
+<script>
+location.href = "/t/<%= params[:t] %>?e=<%= @errors %>&e2=<%= @extraErrors %>#add";
+</script>

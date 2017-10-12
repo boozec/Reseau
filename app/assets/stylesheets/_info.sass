@@ -1,0 +1,51 @@
+//texts
+$fontFamily:	Helvetica, sans-serif
+$fontColor:		#333
+$fontSize:		9pt
+
+//headers
+$hFontColor:	#333
+$hFontSize:		20pt
+
+//info
+$bgcolor:		darken(#FFF, 2%)
+$fcolor:		#2ecc71
+$maxwidth:		1300px
+
+body, header, nav, ul, li, ol, strong, b, i, em, h1, h2, h3, h4, p, div, article, section
+	margin:		0
+	padding:	0
+
+=transition($t)
+	-webkit-transition:		$t
+	-mz-transition:			$t
+	-moz-transition:		$t
+	-o-transition:			$t
+	transition:				$t
+
+=radius($r)
+	-webkit-border-radius:	$r
+	-mz-border-radius:		$r
+	-moz-border-radius:		$r
+	-o-border-radius:		$r
+	border-radius:			$r
+
+=shadow($s)
+	-webkit-box-shadow:	$s
+	-mz-box-shadow:		$s
+	-moz-box-shadow:		$s
+	-o-box-shadow:		$s
+	box-shadow:			$s
+
+body
+	background-color:	$bgcolor
+	font-family:		$fontFamily
+	font-size:			$fontSize
+	-webkit-font-smoothing: antialiased
+	font-smoothing: antialiased
+	-moz-font-smoothing: antialiased
+	-ms-font-smoothing: antialiased
+
+.beforeUser
+	content: 'u/'
+	color: darken(#AAA, 10%)

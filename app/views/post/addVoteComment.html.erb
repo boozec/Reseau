@@ -1,0 +1,10 @@
+<% redIfConn unless check_conn %>
+<% res = Love.whatLoveC(params[:id], "#{userd 'id'}") %>
+<% if res == 'add' %>
+  <% addLoveC(params[:id], "#{userd 'id'}") %>
+<% else %>
+  <% remLoveC(params[:id], "#{userd 'id'}") %>
+<% end %>
+<script>
+location.href = "/t/<%= params[:topic] %>#c_<%= params[:id] %>";
+</script>

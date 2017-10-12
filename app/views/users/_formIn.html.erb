@@ -1,0 +1,12 @@
+<%= form_tag({controller: "users", action: "signin"}, method: :put) do %>
+  <h1>Entra</h1>
+  <div class="errors">
+    <%= @errors if @errors != '' %>
+  </div>
+  <input type="hidden" name="l" value="1" />
+  <input id="user_username" placeholder="Username" type="text" name="username" required />
+  <input id="user_password" placeholder="Password" type="password" name="password" required />
+  <a class="switchSignup">Registrati subito</a>
+  <%= link_to "Password dimenticata?", {:controller => 'users', :action => 'forgot'}, :class => 'signForgotPsw' %>
+  <input type="submit" name="commit" value="Entra" id="submit" />
+<% end %>
