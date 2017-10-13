@@ -3,7 +3,7 @@
   <div class="last_chall">
     <h1>Ultime sfide</h1>
     <ul>
-      <% Post.order(:updated_at).where(category: 3).reverse_order.take(5).each do |post| %>
+      <% Post.order(:updated_at).where(category: 3, active: 1).reverse_order.take(5).each do |post| %>
       <li class="<%= cycle('', 'c2') %>">
         <div class="ch_title"><%= link_to "#{post.titolo}", controller: "post", action: "topic", postID: post.id %></div>
         <div class="ch_infos">
