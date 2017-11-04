@@ -19,7 +19,7 @@
 <div id="wmd-button-bar" style="display:none;"></div>
 <% if @post.author == (userd 'id').to_i %>
 <div class="edit_post" style="display:none">
-<%= form_tag({controller: "post", action: "editPost", id: @post.id}, method: "post") do %>
+<%= form_tag({controller: "post", action: "editPost", id: @post.id}, method: "put") do %>
   <textarea name="blocktext" id="wmd-input" class="wmd-input" required><%= sanitize @post.blocktext %></textarea>
   <%= link_to "Aiuto Markdown", {:controller => 'pages', :action => 'index'}, :style => "margin: 15px 0;float: left;cursor: pointer;color:#1e1e1e" %>
   <input type="submit" value="Salva" id="submit" />

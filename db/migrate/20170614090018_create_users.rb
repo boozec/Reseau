@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string 'last_ip', limit: 30, null: false
       t.string 'startcode', limit: 60, null: false
       t.timestamps
+ 	 end
   end
 
   def down
